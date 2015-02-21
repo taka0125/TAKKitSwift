@@ -11,7 +11,11 @@ import Foundation
 import UIKit
 
 public class TAKAlert {
-  public class func show(title: String = "", message: String) {
+  public class func show(message: String) {
+    show("", message: message)
+  }
+  
+  public class func show(title: String, message: String) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
     let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil)
     alert.addAction(okAction)

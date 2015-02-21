@@ -12,7 +12,10 @@ import TAKKitSwift
 
 class ViewController: UITableViewController {
   private enum Row: NSInteger {
-    case RunInBackground = 0, RunOnMainThread, UsersDefault
+    case RunInBackground = 0, RunOnMainThread, ShowAlert, UsersDefault
+  }
+  
+  override func viewWillAppear(animated: Bool) {
   }
   
   override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -24,6 +27,8 @@ class ViewController: UITableViewController {
         runInBackground()
       case .RunOnMainThread:
         runOnMainThread()
+      case .ShowAlert:
+        showAlert()
       case .UsersDefault:
         showUsersDefault()
       }
@@ -40,6 +45,10 @@ class ViewController: UITableViewController {
     TAKBlock.runOnMainThread {
       println("isMainThread = \(NSThread.currentThread().isMainThread)")
     }
+  }
+  
+  private func showAlert() {
+    TAKAlert.show("Alert")
   }
   
   private func showUsersDefault() {

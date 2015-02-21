@@ -71,6 +71,26 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="pn9-m8-0nv">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pn9-m8-0nv" id="odO-wa-tvA">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show alert" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ntV-Tm-Yhy">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="ntV-Tm-Yhy" secondAttribute="bottom" id="bCS-AO-oPe"/>
+                                                <constraint firstAttribute="trailing" secondItem="ntV-Tm-Yhy" secondAttribute="trailing" constant="15" id="cvP-Pj-3Im"/>
+                                                <constraint firstItem="ntV-Tm-Yhy" firstAttribute="top" secondItem="odO-wa-tvA" secondAttribute="top" id="q3W-Hg-aVF"/>
+                                                <constraint firstItem="ntV-Tm-Yhy" firstAttribute="leading" secondItem="odO-wa-tvA" secondAttribute="leading" constant="15" id="tJk-qY-LeN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="bX5-m3-koH">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bX5-m3-koH" id="aKK-nk-pIe">
