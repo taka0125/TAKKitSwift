@@ -7,6 +7,9 @@
 //  Released under the MIT license.
 //
 
+import Foundation
+import UIKit
+
 public class TAKUserDefaultsBundleHelper {
   private struct Const {
     static let Name = "TAKUserDefaults"

@@ -8,6 +8,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class TAKAlert {
   public class func show(title: String = "", message: String) {

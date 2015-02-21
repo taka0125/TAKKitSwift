@@ -1,15 +1,13 @@
-# references:
-# * http://www.objc.io/issue-6/travis-ci.html
-# * https://github.com/supermarin/xcpretty#usage
-
 language: objective-c
-# cache: cocoapods
-# podfile: Example/Podfile
-# before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
-# - pod install --project-directory=Example
+cache: 
+  directories:
+    - vendor/bundle
 install:
-- gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-script:
-- set -o pipefail && xcodebuild test -workspace Example/TAKKitSwift.xcworkspace -scheme TAKKitSwift-Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
-- pod lib lint --quick
+  - brew update && (brew upgrade xctool || true) && (brew install xcproj || true) && xctool --version
+  - bundle install --path=vendor/bundle --binstubs=vendor/bin
+  - cd Example && bundle exec pod install && cd -
+xcode_workspace: Example/TAKKitSwiftSample.xcworkspace
+xcode_scheme: TAKKitSwiftSample
+xcode_sdk: iphonesimulator
+env:
+  - XCODE_SDK=iphonesimulator8.0
