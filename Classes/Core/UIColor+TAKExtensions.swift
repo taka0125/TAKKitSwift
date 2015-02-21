@@ -11,7 +11,11 @@ import Foundation
 import UIKit
 
 public extension UIColor {
-  public class func tak_HEXRGBColor(red: Int, _ green: Int, _ blue: Int, _ alpha: Int = 100) -> UIColor {
+  public class func tak_HEXRGBColor(red: Int, _ green: Int, _ blue: Int) -> UIColor {
+    return tak_HEXRGBColor(red, green, blue, 100)
+  }
+
+  public class func tak_HEXRGBColor(red: Int, _ green: Int, _ blue: Int, _ alpha: Int) -> UIColor {
     return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: CGFloat(alpha) / 100.0)
   }
   
