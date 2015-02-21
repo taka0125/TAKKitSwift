@@ -1,0 +1,9 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'TAKKitSwiftSample', :exclusive => true do
+  pod "TAKKitSwift", :path => "../"
+end
+
+target 'TAKKitSwiftSampleTests', :exclusive => true do
+  pod "TAKKitSwift", :path => "../"
+end
