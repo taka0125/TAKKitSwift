@@ -7,6 +7,9 @@
 //  Released under the MIT license.
 //
 
+import Foundation
+import UIKit
+
 public class TAKUserDefaultsViewController: UIViewController {
   @IBOutlet private weak var tableView: UITableView!
   @IBOutlet private weak var topPaddingConstraint: NSLayoutConstraint!

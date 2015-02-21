@@ -7,6 +7,9 @@
 //  Released under the MIT license.
 //
 
+import Foundation
+import UIKit
+
 public class TAKUserDefaultsViewCell: UITableViewCell {
   private struct Const {
     static let Padding = CGFloat(23.0)
