@@ -19,13 +19,17 @@ public extension UIView {
     return UINib(nibName: tak_defaultIdentifier(), bundle: bundle)
   }
   
-  public class func tak_viewFromDefaultNib(owner: AnyObject? = nil) -> UIView {
+  public class func tak_viewFromDefaultNib() -> UIView {
+    return tak_viewFromDefaultNib(NSBundle.mainBundle(), owner: nil)
+  }
+  
+  public class func tak_viewFromDefaultNib(owner: AnyObject?) -> UIView {
     return tak_viewFromDefaultNib(NSBundle.mainBundle(), owner: owner)
   }
   
-  public class func tak_viewFromDefaultNib(bundle: NSBundle, owner: AnyObject? = nil) -> UIView {
+  public class func tak_viewFromDefaultNib(bundle: NSBundle, owner: AnyObject?) -> UIView {
     let nib = tak_defaultNib(bundle)
-    return nib.instantiateWithOwner(owner, options: nil)[0] as UIView
+    return nib.instantiateWithOwner(owner, options: nil)[0] as! UIView
   }
   
   public class func tak_defaultIdentifier() -> String {
