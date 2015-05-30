@@ -20,7 +20,7 @@ public class TAKAlert {
     let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil)
     alert.addAction(okAction)
     
-    if let window = UIApplication.sharedApplication().delegate?.window? {
+    if let w = UIApplication.sharedApplication().delegate?.window, window = w {
       if let c = findTopViewController(window.rootViewController) {
         TAKBlock.runOnMainThread {
           c.presentViewController(alert, animated: true, completion: nil)
@@ -43,8 +43,7 @@ public class TAKAlert {
         
         return r
       }
-    } else {
-      return nil
     }
+    return nil
   }
 }

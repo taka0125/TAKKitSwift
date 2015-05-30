@@ -19,9 +19,8 @@ public class TAKUserDefaultsBundleHelper {
   public class func bundle() -> NSBundle? {
     if let path = NSBundle.mainBundle().pathForResource(Const.Name, ofType: "bundle", inDirectory: Const.Directory) {
       return NSBundle(path: path)
-    } else {
-      return nil
     }
+    return nil
   }
   
   public class func storyboard(name: String) -> UIStoryboard {
