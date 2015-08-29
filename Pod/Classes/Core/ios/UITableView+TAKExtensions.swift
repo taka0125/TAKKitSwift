@@ -19,4 +19,12 @@ public extension UITableView {
     registerClass(klass, forCellReuseIdentifier: klass.tak_defaultIdentifier())
     registerNib(klass.tak_defaultNib(bundle), forCellReuseIdentifier: klass.tak_defaultIdentifier())
   }
+
+  public func tak_dequeueReusableCell<T: UITableViewCell>(klass: T.Type) -> T? {
+    return dequeueReusableCellWithIdentifier(klass.tak_defaultIdentifier()) as? T
+  }
+
+  public func tak_dequeueReusableCell<T: UITableViewCell>(klass: T.Type, indexPath: NSIndexPath) -> T? {
+    return dequeueReusableCellWithIdentifier(klass.tak_defaultIdentifier(), forIndexPath: indexPath) as? T
+  }
 }
