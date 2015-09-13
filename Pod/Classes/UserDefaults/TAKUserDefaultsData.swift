@@ -19,7 +19,8 @@ final class TAKUserDefaultsData {
   
   func load() {
     items = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
-    allKeys = items.allKeys.sorted {
+    
+    allKeys = items.allKeys.sort {
       (a, b) -> Bool in
       
       if let a0 = a as? String, b0 = b as? String {
@@ -27,7 +28,7 @@ final class TAKUserDefaultsData {
       }
       
       return false
-    } as! [String]
+    }.map({ ($0 as? String) ?? "" })
   }
   
   func item(key: String) -> AnyObject? {
