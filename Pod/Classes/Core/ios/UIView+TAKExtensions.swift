@@ -12,11 +12,11 @@ import UIKit
 
 public extension UIView {
   public class func tak_defaultNib() -> UINib {
-    return tak_defaultNib(NSBundle.mainBundle())
+    return tak_defaultNib(nil)
   }
-
-  public class func tak_defaultNib(bundle: NSBundle) -> UINib {
-    return UINib(nibName: tak_defaultIdentifier(), bundle: bundle)
+  
+  public class func tak_defaultNib(bundle: NSBundle?) -> UINib {
+    return UINib(nibName: tak_defaultIdentifier(), bundle: bundle ?? NSBundle.mainBundle())
   }
   
   public class func tak_viewFromDefaultNib() -> UIView {
@@ -30,9 +30,5 @@ public extension UIView {
   public class func tak_viewFromDefaultNib(bundle: NSBundle, owner: AnyObject?) -> UIView {
     let nib = tak_defaultNib(bundle)
     return nib.instantiateWithOwner(owner, options: nil)[0] as! UIView
-  }
-  
-  public class func tak_defaultIdentifier() -> String {
-    return NSStringFromClass(self).componentsSeparatedByString(".").last!
   }
 }

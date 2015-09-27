@@ -6,8 +6,8 @@ cache:
 install:
   - brew update && (brew upgrade xctool || true) && (brew install xcproj || true) && xctool --version
   - bundle install --path=vendor/bundle --binstubs=vendor/bin
-  - cd Example && bundle exec pod install && cd -
-xcode_workspace: Example/TAKKitSwiftSample.xcworkspace
+  - cd Example/ios && bundle exec pod install && cd -
+xcode_workspace: Example/ios/TAKKitSwiftSample.xcworkspace
 xcode_scheme: TAKKitSwiftSample
 xcode_sdk: iphonesimulator
 env:
