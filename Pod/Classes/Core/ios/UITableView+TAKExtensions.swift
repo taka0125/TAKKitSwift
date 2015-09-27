@@ -27,4 +27,14 @@ public extension UITableView {
   public func tak_dequeueReusableCell<T: UITableViewCell>(klass: T.Type, indexPath: NSIndexPath) -> T? {
     return dequeueReusableCellWithIdentifier(klass.tak_defaultIdentifier(), forIndexPath: indexPath) as? T
   }
+  
+  public func tak_reloadSections(sections: Set<NSInteger>, animation: UITableViewRowAnimation) {
+    beginUpdates()
+    
+    for section in sections {
+      reloadSections(NSIndexSet(index: section), withRowAnimation: animation)
+    }
+    
+    endUpdates()
+  }
 }

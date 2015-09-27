@@ -14,7 +14,7 @@ public extension NSNotification {
     static let Key = "tak_parameters"
   }
   
-  var tak_parameters: AnyObject? {
+  public var tak_parameters: AnyObject? {
     return userInfo?[Const.Key]
   }
   
@@ -28,8 +28,8 @@ public extension NSNotification {
   
   public class func tak_notification(name: String, object: AnyObject?, parameters: AnyObject?) -> NSNotification {
     var userInfo: [NSObject: AnyObject]? = nil
-    if let p: AnyObject = parameters {
-      userInfo = [Const.Key: p]
+    if let parameters: AnyObject = parameters {
+      userInfo = [Const.Key: parameters]
     }
     return NSNotification(name: name, object: object, userInfo: userInfo)
   }
