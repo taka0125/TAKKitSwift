@@ -3,9 +3,9 @@ source 'https://github.com/CocoaPods/Specs.git'
 use_frameworks!
 
 target 'TAKKitSwiftSample', :exclusive => true do
-  pod "TAKKitSwift", :path => "../"
+  pod "TAKKitSwift", :path => "../../"
 end
 
 target 'TAKKitSwiftSampleTests', :exclusive => true do
-  pod "TAKKitSwift", :path => "../"
+  pod "TAKKitSwift", :path => "../../"
 end

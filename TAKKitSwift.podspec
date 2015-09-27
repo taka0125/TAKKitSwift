@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TAKKitSwift"
-  s.version          = "1.3.0"
+  s.version          = "1.4.0"
   s.summary          = "Util"
   s.homepage         = "https://github.com/taka0125/TAKKitSwift"
   s.license          = 'MIT'
@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |ss|
     ss.source_files = 'Pod/Classes/Core/*.swift'
     ss.ios.source_files = 'Pod/Classes/Core/ios/*.swift'
+    ss.osx.source_files = 'Pod/Classes/Core/osx/*.swift'
   end
 
   s.subspec 'UserDefaults' do |ss|

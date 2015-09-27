@@ -12,38 +12,20 @@ import UIKit
 
 public class TAKAlert {
   public class func show(message: String) {
-    show("", message: message)
+    show("", message)
   }
   
-  public class func show(title: String, message: String) {
+  public class func show(title: String, _ message: String) {
     let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
     let okAction = UIAlertAction(title: NSLocalizedString("OK", comment: ""), style: .Default, handler: nil)
     alert.addAction(okAction)
     
     if let w = UIApplication.sharedApplication().delegate?.window, window = w {
-      if let c = findTopViewController(window.rootViewController) {
+      if let c = window.tak_topViewController() {
         TAKBlock.runOnMainThread {
           c.presentViewController(alert, animated: true, completion: nil)
         }
       }
     }
-  }
-  
-  private class func findTopViewController(rootViewController: UIViewController?) -> UIViewController? {
-    if let r = rootViewController {
-      switch r {
-      case let c as UITabBarController:
-        return findTopViewController(c.selectedViewController)
-      case let c as UINavigationController:
-        return findTopViewController(c.visibleViewController)
-      default:
-        if let c = r.presentedViewController {
-          return findTopViewController(c)
-        }
-        
-        return r
-      }
-    }
-    return nil
   }
 }
