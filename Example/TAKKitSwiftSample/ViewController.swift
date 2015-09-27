@@ -37,13 +37,13 @@ class ViewController: UITableViewController {
   
   private func runInBackground() {
     TAKBlock.runInBackground {
-      println("isMainThread = \(NSThread.currentThread().isMainThread)")
+      print("isMainThread = \(NSThread.currentThread().isMainThread)")
     }
   }
   
   private func runOnMainThread() {
     TAKBlock.runOnMainThread {
-      println("isMainThread = \(NSThread.currentThread().isMainThread)")
+      print("isMainThread = \(NSThread.currentThread().isMainThread)")
     }
   }
   

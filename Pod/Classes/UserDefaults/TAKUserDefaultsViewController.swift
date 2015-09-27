@@ -22,7 +22,7 @@ public class TAKUserDefaultsViewController: UIViewController {
     return storyboard.instantiateViewControllerWithIdentifier("TAKUserDefaultsViewController") as? TAKUserDefaultsViewController
   }
   
-  public required init(coder aDecoder: NSCoder) {
+  public required init?(coder aDecoder: NSCoder) {
     let data = TAKUserDefaultsData.sharedInstance
     data.load()
     
@@ -105,7 +105,7 @@ extension TAKUserDefaultsViewController: UISearchControllerDelegate {
 
 extension TAKUserDefaultsViewController: UISearchResultsUpdating {
   public func updateSearchResultsForSearchController(searchController: UISearchController) {
-    let searchText = searchController.searchBar.text
+    guard let searchText = searchController.searchBar.text else { return }
     
     if let c = self.searchController.searchResultsController as? TAKUserDefaultsSearchResultController {
       c.filteredKeys = TAKUserDefaultsData.sharedInstance.filteredKeys(searchText)
