@@ -10,9 +10,12 @@
 import UIKit
 import TAKKitSwift
 
-class ViewController: UITableViewController {
+class ViewController: UITableViewController, ControllerInstantiatable {
+  static let storyboardName = "Main"
+  var value1 = 0
+  
   private enum Row: NSInteger {
-    case RunInBackground = 0, RunOnMainThread, ShowAlert, UsersDefault
+    case RunInBackground = 0, RunOnMainThread, ShowAlert, UsersDefault, Instantiatable
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -31,6 +34,9 @@ class ViewController: UITableViewController {
         showAlert()
       case .UsersDefault:
         showUsersDefault()
+      case .Instantiatable:
+        let c = ViewController.createInstance()
+        print(c)
       }
     }
   }
