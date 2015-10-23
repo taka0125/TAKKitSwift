@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TAKKitSwift"
-  s.version          = "1.5.0"
+  s.version          = "1.6.0"
   s.summary          = "Util"
   s.homepage         = "https://github.com/taka0125/TAKKitSwift"
   s.license          = 'MIT'
@@ -25,5 +25,20 @@ Pod::Spec.new do |s|
     ss.resource_bundles = {
       'TAKUserDefaults' => ['Pod/Assets/UserDefaults/*']
     }
+  end
+
+  s.subspec 'Photo' do |ss|
+    ss.platform = :ios
+    ss.dependency 'TAKKitSwift/Core'
+    ss.frameworks = 'Photos', 'AVFoundation'
+    ss.source_files = 'Pod/Classes/Photo/*.swift'
+  end
+
+  s.subspec 'Twitter' do |ss|
+    ss.platform = :ios
+    ss.dependency 'TAKKitSwift/Core'
+    ss.dependency 'STTwitter'
+    ss.frameworks = 'Accounts'
+    ss.source_files = 'Pod/Classes/Twitter/*.swift'
   end
 end
