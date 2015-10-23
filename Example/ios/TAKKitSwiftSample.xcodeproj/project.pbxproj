@@ -12,6 +12,7 @@
 		864470ED1A979FE600110272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864470EB1A979FE600110272 /* Main.storyboard */; };
 		864470EF1A979FE600110272 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864470EE1A979FE600110272 /* Images.xcassets */; };
 		864470F21A979FE600110272 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864470F01A979FE600110272 /* LaunchScreen.xib */; };
+		8690249E1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690249D1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		8692EFE81BB7A05600898709 /* NSNotificationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE61BB7A05600898709 /* NSNotificationTest.swift */; settings = {ASSET_TAGS = (); }; };
 		8692EFE91BB7A05600898709 /* TAKBlockTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE71BB7A05600898709 /* TAKBlockTest.swift */; settings = {ASSET_TAGS = (); }; };
 		91F602D573A6CDA772849E80 /* Pods_TAKKitSwiftSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA306C744CE75884CCBCB17E /* Pods_TAKKitSwiftSample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -38,6 +39,7 @@
 		864470EC1A979FE600110272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		864470EE1A979FE600110272 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		864470F11A979FE600110272 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8690249D1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorSampleViewController.swift; sourceTree = "<group>"; };
 		8692EFDB1BB7A02A00898709 /* TAKKitSwiftSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TAKKitSwiftSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8692EFDF1BB7A02B00898709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8692EFE61BB7A05600898709 /* NSNotificationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationTest.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			children = (
 				864470E71A979FE600110272 /* AppDelegate.swift */,
 				864470E91A979FE600110272 /* ViewController.swift */,
+				8690249D1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift */,
 				864470EB1A979FE600110272 /* Main.storyboard */,
 				864470EE1A979FE600110272 /* Images.xcassets */,
 				864470F01A979FE600110272 /* LaunchScreen.xib */,
@@ -349,6 +352,7 @@
 			files = (
 				864470EA1A979FE600110272 /* ViewController.swift in Sources */,
 				864470E81A979FE600110272 /* AppDelegate.swift in Sources */,
+				8690249E1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
