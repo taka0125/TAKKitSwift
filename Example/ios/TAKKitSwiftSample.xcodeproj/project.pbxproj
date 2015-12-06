@@ -12,11 +12,11 @@
 		864470ED1A979FE600110272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864470EB1A979FE600110272 /* Main.storyboard */; };
 		864470EF1A979FE600110272 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 864470EE1A979FE600110272 /* Images.xcassets */; };
 		864470F21A979FE600110272 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864470F01A979FE600110272 /* LaunchScreen.xib */; };
-		8690249E1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690249D1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift */; settings = {ASSET_TAGS = (); }; };
-		8692EFE81BB7A05600898709 /* NSNotificationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE61BB7A05600898709 /* NSNotificationTest.swift */; settings = {ASSET_TAGS = (); }; };
-		8692EFE91BB7A05600898709 /* TAKBlockTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE71BB7A05600898709 /* TAKBlockTest.swift */; settings = {ASSET_TAGS = (); }; };
-		91F602D573A6CDA772849E80 /* Pods_TAKKitSwiftSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA306C744CE75884CCBCB17E /* Pods_TAKKitSwiftSample.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		D6B621D8D271BC7FF16DEC06 /* Pods_TAKKitSwiftSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7141A812D690837A6D2B0C /* Pods_TAKKitSwiftSampleTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8690249E1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690249D1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift */; };
+		8692EFE81BB7A05600898709 /* NSNotificationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE61BB7A05600898709 /* NSNotificationTest.swift */; };
+		8692EFE91BB7A05600898709 /* TAKBlockTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE71BB7A05600898709 /* TAKBlockTest.swift */; };
+		91F602D573A6CDA772849E80 /* Pods_TAKKitSwiftSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA306C744CE75884CCBCB17E /* Pods_TAKKitSwiftSample.framework */; };
+		D6B621D8D271BC7FF16DEC06 /* Pods_TAKKitSwiftSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB7141A812D690837A6D2B0C /* Pods_TAKKitSwiftSampleTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
