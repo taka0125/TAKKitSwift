@@ -15,7 +15,7 @@ class ViewController: UITableViewController, ControllerInstantiatable {
   var value1 = 0
   
   private enum Row: NSInteger {
-    case RunInBackground = 0, RunOnMainThread, ShowAlert, UsersDefault, Instantiatable
+    case RunInBackground = 0, RunOnMainThread, ShowAlert, UsersDefault, Instantiatable, Application
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -37,6 +37,8 @@ class ViewController: UITableViewController, ControllerInstantiatable {
       case .Instantiatable:
         let c = ViewController.createInstance()
         print(c)
+      case .Application:
+        showApplicationInfo()
       }
     }
   }
@@ -61,6 +63,12 @@ class ViewController: UITableViewController, ControllerInstantiatable {
     if let c = TAKUserDefaultsViewController.instantiate() {
       navigationController?.pushViewController(c, animated: true)
     }
+  }
+  
+  private func showApplicationInfo() {
+    print("bundleIdentifier = \(Application.sharedApplication.bundleIdentifier)")
+    print("version = \(Application.sharedApplication.version)")
+    print("build = \(Application.sharedApplication.build)")
   }
 }
 
