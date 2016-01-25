@@ -68,8 +68,8 @@ final public class Twitter {
       { (authenticationHeader) in
         let osApi = STTwitterAPI.twitterAPIOSWithAccount(account)
         osApi.verifyCredentialsWithUserSuccessBlock(
-          { (result, error) in
-            api.postReverseAuthAccessTokenWithAuthenticationHeader(authenticationHeader,
+          { _ in
+            osApi.postReverseAuthAccessTokenWithAuthenticationHeader(authenticationHeader,
               successBlock: { (oAuthToken, oAuthTokenSecret, userId, screenName) -> Void in
                 
                 // https://github.com/nst/STTwitter/commit/924e5a77f783a17d176de63fd8eca034f942c025
