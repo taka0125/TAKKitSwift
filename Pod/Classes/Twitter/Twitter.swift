@@ -66,7 +66,7 @@ final public class Twitter {
     let api = STTwitterAPI(OAuthConsumerKey: consumerKey, consumerSecret: consumerSecret)
     api.postReverseOAuthTokenRequest(
       { (authenticationHeader) in
-        let osApi = STTwitterAPI.twitterAPIOSWithAccount(account)
+        let osApi = STTwitterAPI.twitterAPIOSWithAccount(account, delegate: nil)
         osApi.verifyCredentialsWithUserSuccessBlock(
           { _ in
             osApi.postReverseAuthAccessTokenWithAuthenticationHeader(authenticationHeader,
