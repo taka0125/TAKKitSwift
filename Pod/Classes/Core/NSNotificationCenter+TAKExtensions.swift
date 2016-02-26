@@ -9,13 +9,17 @@
 
 import Foundation
 
+public protocol NotificationName {
+  var rawValue: String { get }
+}
+
 public extension NSNotificationCenter {
-  public func tak_replaceObserver(notificationObserver: AnyObject, selector: Selector, name: String, object: AnyObject?) {
+  public func tak_replaceObserver(notificationObserver: AnyObject, selector: Selector, name: NotificationName, object: AnyObject? = nil) {
+    tak_replaceObserver(notificationObserver, selector: selector, name: name.rawValue, object: object)
+  }
+  
+  public func tak_replaceObserver(notificationObserver: AnyObject, selector: Selector, name: String, object: AnyObject? = nil) {
     removeObserver(notificationObserver, name: name, object: object)
     addObserver(notificationObserver, selector: selector, name: name, object: object)
-  } 
-
-  public func tak_replaceObserver(notificationObserver: AnyObject, selector: Selector, name: String) {
-    tak_replaceObserver(notificationObserver, selector: selector, name: name, object: nil)
   }
 }
