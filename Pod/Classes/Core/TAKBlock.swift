@@ -12,24 +12,57 @@ import Foundation
 public class TAKBlock {
   public typealias VoidBlock = Void -> Void
   
+  // https://developer.apple.com/library/ios/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html#//apple_ref/doc/uid/TP40015243-CH39-SW1
+  public enum QOS {
+    case UserInteractive
+    case UserInitiated
+    case Default
+    case Utility
+    case Background
+    
+    public var queue: dispatch_queue_t {
+      return dispatch_get_global_queue(identifier, 0)
+    }
+    
+    private var identifier: qos_class_t {
+      switch self {
+      case .UserInteractive: return QOS_CLASS_USER_INTERACTIVE
+      case .UserInitiated: return QOS_CLASS_USER_INITIATED
+      case .Default: return QOS_CLASS_DEFAULT
+      case .Utility: return QOS_CLASS_UTILITY
+      case .Background: return QOS_CLASS_BACKGROUND
+      }
+    }
+  }
+  
+  // MARK: - Create queue
+  
+  public class func createSerialQueue(name: String) -> dispatch_queue_t {
+    return dispatch_queue_create(name, DISPATCH_QUEUE_SERIAL)
+  }
+  
+  public class func createConcurrentQueue(name: String) -> dispatch_queue_t {
+    return dispatch_queue_create(name, DISPATCH_QUEUE_CONCURRENT)
+  }
+  
   // MARK: - MainThread
   
   public class func runOnMainThread(block: VoidBlock) {
     run(dispatch_get_main_queue(), block: block)
   }
   
-  public class func runOnMainThread(block: VoidBlock, delay: Double) {
-    run(dispatch_get_main_queue(), block: block, delay: delay)
+  public class func runOnMainThread(delay: Double, block: VoidBlock) {
+    run(dispatch_get_main_queue(), delay: delay, block: block)
   }
   
   // MARK: - Background
   
   public class func runInBackground(block: VoidBlock) {
-    run(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block: block)
+    run(.Utility, block: block)
   }
   
-  public class func runInBackground(block: VoidBlock, delay: Double) {
-    run(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), block: block, delay: delay)
+  public class func runInBackground(delay: Double, block: VoidBlock) {
+    run(.Utility, delay: delay, block: block)
   }
   
   // MARK: - Queue
@@ -38,8 +71,19 @@ public class TAKBlock {
     dispatch_async(queue, block)
   }
   
-  public class func run(queue: dispatch_queue_t, block: VoidBlock, delay: Double) {
+  public class func run(queue: dispatch_queue_t, delay: Double, block: VoidBlock) {
     let d = Int64(delay * Double(NSEC_PER_SEC))
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, d), queue, block)
+  }
+  
+  // MARK: - QOS
+  
+  public class func run(qos: QOS, block: VoidBlock) {
+    dispatch_async(qos.queue, block)
+  }
+  
+  public class func run(qos: QOS,  delay: Double, block: VoidBlock) {
+    let d = Int64(delay * Double(NSEC_PER_SEC))
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, d), qos.queue, block)
   }
 }

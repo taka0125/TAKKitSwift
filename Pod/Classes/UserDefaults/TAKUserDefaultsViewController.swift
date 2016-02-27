@@ -52,6 +52,10 @@ public class TAKUserDefaultsViewController: UIViewController {
     searchController.dimsBackgroundDuringPresentation = false
     searchController.searchBar.delegate = self
     
+    if #available(iOS 9.0, *) {
+      searchController.loadViewIfNeeded()
+    }
+    
     tableView.tableHeaderView = searchController.searchBar
     
     definesPresentationContext = true
