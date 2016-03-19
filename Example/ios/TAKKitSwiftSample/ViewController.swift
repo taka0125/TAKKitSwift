@@ -15,7 +15,15 @@ class ViewController: UITableViewController, ControllerInstantiatable {
   var value1 = 0
   
   private enum Row: NSInteger {
-    case RunInBackground = 0, RunOnMainThread, ShowAlert, UsersDefault, Instantiatable, Application
+    case RunInBackground = 0
+    case RunOnMainThread
+    case ShowAlert
+    case UsersDefault
+    case Instantiatable
+    case Application
+    case PhotoSelector
+    case Keyboard
+    case NSURLSample
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -39,10 +47,16 @@ class ViewController: UITableViewController, ControllerInstantiatable {
         print(c)
       case .Application:
         showApplicationInfo()
+      case .NSURLSample:
+        doNSURLSample()
+      default:
+        super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
       }
     }
   }
-  
+}
+
+extension ViewController {
   private func runInBackground() {
     TAKBlock.runInBackground {
       print("isMainThread = \(NSThread.currentThread().isMainThread)")
@@ -70,5 +84,15 @@ class ViewController: UITableViewController, ControllerInstantiatable {
     print("version = \(Application.sharedApplication.version)")
     print("build = \(Application.sharedApplication.build)")
   }
+  
+  private func doNSURLSample() {
+    let cachesDirectory = NSURL.tak_cachesDirectory()
+    let documentDirectory = NSURL.tak_documentDirectory()
+    let temporaryDirectory = NSURL.tak_temporaryDirectory()
+    
+    print(cachesDirectory)
+    print(documentDirectory)
+    print(temporaryDirectory)
+    print(temporaryDirectory.tak_joined("foo", "bar", "fuga.txt"))
+  }
 }
-
