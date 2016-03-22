@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 public protocol ControllerInstantiatable {
-  typealias InstanceType: UIViewController = Self
+  associatedtype InstanceType: UIViewController = Self
   static var storyboardName: String { get }
   
   static func createInstance() -> InstanceType?

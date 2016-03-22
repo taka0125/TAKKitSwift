@@ -25,8 +25,8 @@ public final class KeyboardDisplayObserver {
   
   public init() {
     let center = NSNotificationCenter.defaultCenter()
-    center.tak_replaceObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification)
-    center.tak_replaceObserver(self, selector: "keyboardWillHide:", name: UIKeyboardWillHideNotification)
+    center.tak_replaceObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification)
+    center.tak_replaceObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification)
   }
   
   public func observe(view: UIView? = nil, callback: Callback) {
