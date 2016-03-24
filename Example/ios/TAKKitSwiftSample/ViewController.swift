@@ -50,7 +50,7 @@ class ViewController: UITableViewController, ControllerInstantiatable {
       case .NSURLSample:
         doNSURLSample()
       default:
-        super.tableView(tableView, didSelectRowAtIndexPath: indexPath)
+        return
       }
     }
   }
