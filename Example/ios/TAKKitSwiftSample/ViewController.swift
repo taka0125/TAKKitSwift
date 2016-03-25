@@ -14,6 +14,8 @@ class ViewController: UITableViewController, ControllerInstantiatable {
   static let storyboardName = "Main"
   var value1 = 0
   
+  private let decimation = Decimation(interval: 1.0)
+  
   private enum Row: NSInteger {
     case RunInBackground = 0
     case RunOnMainThread
@@ -24,6 +26,7 @@ class ViewController: UITableViewController, ControllerInstantiatable {
     case PhotoSelector
     case Keyboard
     case NSURLSample
+    case Decimation
   }
   
   override func viewWillAppear(animated: Bool) {
@@ -49,6 +52,8 @@ class ViewController: UITableViewController, ControllerInstantiatable {
         showApplicationInfo()
       case .NSURLSample:
         doNSURLSample()
+      case .Decimation:
+        doDecimationSample()
       default:
         return
       }
@@ -94,5 +99,14 @@ extension ViewController {
     print(documentDirectory)
     print(temporaryDirectory)
     print(temporaryDirectory.tak_joined("foo", "bar", "fuga.txt"))
+  }
+  
+  private func doDecimationSample() {
+    (1...5).forEach { i in
+      decimation.execute {
+        print(i)
+      }
+    }
+    print("done")
   }
 }

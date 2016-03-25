@@ -236,6 +236,28 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="44" id="gPU-PM-IRV">
+                                        <rect key="frame" x="0.0" y="460" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gPU-PM-IRV" id="7IN-VC-1uf">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Decimation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xor-4A-nWm">
+                                                    <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Xor-4A-nWm" firstAttribute="leading" secondItem="7IN-VC-1uf" secondAttribute="leading" constant="15" id="1k9-W5-qWn"/>
+                                                <constraint firstAttribute="bottom" secondItem="Xor-4A-nWm" secondAttribute="bottom" id="iaH-JJ-PWI"/>
+                                                <constraint firstItem="Xor-4A-nWm" firstAttribute="top" secondItem="7IN-VC-1uf" secondAttribute="top" id="uxd-t2-rww"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xor-4A-nWm" secondAttribute="trailing" constant="15" id="xB8-pc-QKl"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
