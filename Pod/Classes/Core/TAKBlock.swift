@@ -86,4 +86,10 @@ public class TAKBlock {
     let d = Int64(delay * Double(NSEC_PER_SEC))
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, d), qos.queue, block)
   }
+
+  // MARK: Label
+
+  public class func currentQueueLabel() -> String {
+    return String(format: "%s", dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))
+  }
 }

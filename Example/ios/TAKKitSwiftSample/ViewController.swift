@@ -64,12 +64,14 @@ class ViewController: UITableViewController, ControllerInstantiatable {
 extension ViewController {
   private func runInBackground() {
     TAKBlock.runInBackground {
+      print("label = \(TAKBlock.currentQueueLabel())")
       print("isMainThread = \(NSThread.currentThread().isMainThread)")
     }
   }
   
   private func runOnMainThread() {
     TAKBlock.runOnMainThread {
+      print("label = \(TAKBlock.currentQueueLabel())")
       print("isMainThread = \(NSThread.currentThread().isMainThread)")
     }
   }
