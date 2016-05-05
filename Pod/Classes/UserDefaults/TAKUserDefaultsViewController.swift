@@ -13,39 +13,45 @@ import UIKit
 public class TAKUserDefaultsViewController: UIViewController {
   @IBOutlet private weak var tableView: UITableView!
   
+  private let userDefaults = UserDefaults()
+  private var keys: [String] {
+    return userDefaults.allKeys
+  }
+
   private var searchController: UISearchController
   private var resultsController: TAKUserDefaultsSearchResultController
-  private var keys: [String]
   
   public class func instantiate() -> TAKUserDefaultsViewController? {
-    let storyboard = TAKUserDefaultsBundleHelper.storyboard("TAKUserDefaults")
-    return storyboard.instantiateViewControllerWithIdentifier("TAKUserDefaultsViewController") as? TAKUserDefaultsViewController
+    let storyboard = TAKUserDefaultsBundleHelper.storyboard()
+    return storyboard.tak_instantiateViewController(TAKUserDefaultsViewController.self)
   }
   
   public required init?(coder aDecoder: NSCoder) {
-    let data = TAKUserDefaultsData.sharedInstance
-    data.load()
-    
-    keys = data.allKeys
-    resultsController = TAKUserDefaultsSearchResultController()
-    
+    resultsController = TAKUserDefaultsSearchResultController(userDefaults: userDefaults)
     searchController = UISearchController(searchResultsController: resultsController)
     
     super.init(coder: aDecoder)
   }
   
   public override func viewDidLoad() {
-    tableView.delegate = self
-    tableView.dataSource = self
-    tableView.estimatedRowHeight = 108.0
-    tableView.rowHeight = UITableViewAutomaticDimension
+    setupTableView()
+    setupResultsController()
+    setupSearchController()
     
-    if let bundle = TAKUserDefaultsBundleHelper.bundle() {
-      tableView.tak_registerClassAndNibForCell(TAKUserDefaultsViewCell.self, bundle: bundle)
-    }
+    tableView.tableHeaderView = searchController.searchBar
     
+    definesPresentationContext = true
+  }
+}
+
+// MARK: - Private Methods
+
+extension TAKUserDefaultsViewController {
+  private func setupResultsController() {
     resultsController.tableView.delegate = self
-    
+  }
+  
+  private func setupSearchController() {
     searchController.searchResultsUpdater = self
     searchController.searchBar.sizeToFit()
     searchController.delegate = self
@@ -55,10 +61,17 @@ public class TAKUserDefaultsViewController: UIViewController {
     if #available(iOS 9.0, *) {
       searchController.loadViewIfNeeded()
     }
+  }
+  
+  private func setupTableView() {
+    tableView.delegate = self
+    tableView.dataSource = self
+    tableView.estimatedRowHeight = 108.0
+    tableView.rowHeight = UITableViewAutomaticDimension
     
-    tableView.tableHeaderView = searchController.searchBar
-    
-    definesPresentationContext = true
+    if let bundle = TAKUserDefaultsBundleHelper.bundle() {
+      tableView.tak_registerClassAndNibForCell(TAKUserDefaultsViewCell.self, bundle: bundle)
+    }
   }
 }
 
@@ -72,13 +85,11 @@ extension TAKUserDefaultsViewController: UITableViewDataSource {
   }
   
   public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(TAKUserDefaultsViewCell.tak_defaultIdentifier(), forIndexPath: indexPath) as! TAKUserDefaultsViewCell
+    let cell = tableView.tak_forceDequeueReusableCell(TAKUserDefaultsViewCell.self, indexPath: indexPath)
     cell.backgroundColor = tableView.backgroundColor
     
     let key = keys[indexPath.row]
-    if let value: AnyObject = TAKUserDefaultsData.sharedInstance.item(key) {
-      cell.bind(key, value: value)
-    }
+    cell.bind(key, value: userDefaults[key])
     
     return cell
   }
@@ -112,8 +123,7 @@ extension TAKUserDefaultsViewController: UISearchResultsUpdating {
     guard let searchText = searchController.searchBar.text else { return }
     
     if let c = self.searchController.searchResultsController as? TAKUserDefaultsSearchResultController {
-      c.filteredKeys = TAKUserDefaultsData.sharedInstance.filteredKeys(searchText)
-      c.tableView.reloadData()
+      c.updateKeys(userDefaults.filteredKeys(searchText))
     }
   }
 }

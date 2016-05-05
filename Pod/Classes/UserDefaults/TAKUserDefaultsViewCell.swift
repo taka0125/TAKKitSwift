@@ -19,8 +19,10 @@ public class TAKUserDefaultsViewCell: UITableViewCell {
   @IBOutlet private weak var classNameLabel: UILabel!
   @IBOutlet private weak var valueLabel: UILabel!
   
-  func bind(key: String, value: AnyObject) {
+  func bind(key: String, value: AnyObject?) {
     selectionStyle = .None
+
+    guard let value = value else { return }
     
     keyNameLabel?.text = key
     classNameLabel?.text = NSStringFromClass(value.classForCoder)

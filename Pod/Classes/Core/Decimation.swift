@@ -9,17 +9,16 @@
 
 import Foundation
 
-public class Decimation {
-  private let queue: dispatch_queue_t
+public struct Decimation {
+  private let queue: dispatch_queue_t = dispatch_queue_create("net.heartofsword.Throttle.\(NSUUID().UUIDString)", DISPATCH_QUEUE_SERIAL)
   private let interval: NSTimeInterval
   private var executedAt: NSTimeInterval?
   
   public init(interval: NSTimeInterval) {
-    queue = dispatch_queue_create("net.heartofsword.Throttle.\(NSUUID().UUIDString)", DISPATCH_QUEUE_SERIAL)
     self.interval = interval
   }
   
-  public func execute(block: Void -> Void) {
+  public mutating func execute(block: Void -> Void) {
     var decimated = false
     
     dispatch_sync(queue) {

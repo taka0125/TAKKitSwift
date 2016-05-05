@@ -7,41 +7,54 @@
 //  Released under the MIT license.
 //
 
-class TAKUserDefaultsSearchResultController: UITableViewController {
-  var filteredKeys: [String]
+final class TAKUserDefaultsSearchResultController: UITableViewController {
+  private let userDefaults: UserDefaults
+  private var keys: [String]
   
-  init() {
-    filteredKeys = []
+  init(userDefaults: UserDefaults) {
+    keys = []
+    self.userDefaults = userDefaults
     super.init(nibName: nil, bundle: nil)
   }
 
   required init?(coder aDecoder: NSCoder) {
-    filteredKeys = []
+    keys = []
+    self.userDefaults = UserDefaults()
     super.init(nibName: nil, bundle: nil)
   }
   
   override func viewDidLoad() {
+    setupTableView()
+  }
+  
+  func updateKeys(keys: [String]) {
+    self.keys = keys
+    tableView?.reloadData()
+  }
+}
+
+// MARK: - TableView
+
+extension TAKUserDefaultsSearchResultController {
+  private func setupTableView() {
     tableView.estimatedRowHeight = 108.0
     tableView.rowHeight = UITableViewAutomaticDimension
-
+    
     if let bundle = TAKUserDefaultsBundleHelper.bundle() {
       tableView.tak_registerClassAndNibForCell(TAKUserDefaultsViewCell.self, bundle: bundle)
     }
   }
   
   override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return filteredKeys.count
+    return keys.count
   }
   
   override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier(TAKUserDefaultsViewCell.tak_defaultIdentifier(), forIndexPath: indexPath) as! TAKUserDefaultsViewCell
+    let cell = tableView.tak_forceDequeueReusableCell(TAKUserDefaultsViewCell.self, indexPath: indexPath)
     cell.backgroundColor = tableView.backgroundColor
     
-    let key = filteredKeys[indexPath.row]
-    
-    if let value: AnyObject = TAKUserDefaultsData.sharedInstance.item(key) {
-      cell.bind(key, value: value)
-    }
+    let key = keys[indexPath.row]
+    cell.bind(key, value: userDefaults[key])
     
     return cell
   }

@@ -14,13 +14,13 @@ class ViewController: UITableViewController, ControllerInstantiatable {
   static let storyboardName = "Main"
   var value1 = 0
   
-  private let decimation = Decimation(interval: 1.0)
+  private var decimation = Decimation(interval: 1.0)
   
   private enum Row: NSInteger {
     case RunInBackground = 0
     case RunOnMainThread
     case ShowAlert
-    case UsersDefault
+    case UserDefaults
     case Instantiatable
     case Application
     case PhotoSelector
@@ -43,8 +43,8 @@ class ViewController: UITableViewController, ControllerInstantiatable {
         runOnMainThread()
       case .ShowAlert:
         showAlert()
-      case .UsersDefault:
-        showUsersDefault()
+      case .UserDefaults:
+        showUserDefaults()
       case .Instantiatable:
         let c = ViewController.createInstance()
         print(c)
@@ -80,7 +80,7 @@ extension ViewController {
     TAKAlert.show("Alert")
   }
   
-  private func showUsersDefault() {
+  private func showUserDefaults() {
     if let c = TAKUserDefaultsViewController.instantiate() {
       navigationController?.pushViewController(c, animated: true)
     }
