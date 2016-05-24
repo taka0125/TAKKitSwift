@@ -33,9 +33,11 @@ public final class KeyboardDisplayObserver {
     self.view = view
     self.callback = callback
   }
-  
-  // MARK: - Private Methods
-  
+}
+
+// MARK: - Private Methods
+
+extension KeyboardDisplayObserver {
   @objc private func keyboardWillShow(notification: NSNotification) {
     keyboardWillChangeFrameWithNotification(notification, .WillShow)
   }

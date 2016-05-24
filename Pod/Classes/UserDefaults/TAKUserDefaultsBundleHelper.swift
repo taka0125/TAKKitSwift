@@ -10,20 +10,20 @@
 import Foundation
 import UIKit
 
-public class TAKUserDefaultsBundleHelper {
+public struct TAKUserDefaultsBundleHelper {
   private struct Const {
     static let Name = "TAKUserDefaults"
     static let Directory = "Frameworks/TAKKitSwift.framework"
   }
   
-  public class func bundle() -> NSBundle? {
+  public static func bundle() -> NSBundle? {
     if let path = NSBundle.mainBundle().pathForResource(Const.Name, ofType: "bundle", inDirectory: Const.Directory) {
       return NSBundle(path: path)
     }
     return nil
   }
   
-  public class func storyboard(name: String) -> UIStoryboard {
-    return UIStoryboard(name: name, bundle: bundle())
+  public static func storyboard() -> UIStoryboard {
+    return UIStoryboard(name: Const.Name, bundle: bundle())
   }
 }
