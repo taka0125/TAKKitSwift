@@ -28,4 +28,20 @@ public extension UICollectionView {
     registerClass(klass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
     registerNib(klass.tak_defaultNib(bundle), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
   }
+
+  public func tak_dequeueReusableCell<T: UICollectionViewCell>(klass: T.Type, indexPath: NSIndexPath) -> T? {
+    return dequeueReusableCellWithReuseIdentifier(klass.tak_defaultIdentifier(), forIndexPath: indexPath) as? T
+  }
+  
+  public func tak_dequeueReusableSupplementaryViewOfKind<T: UICollectionReusableView>(elementKind: String, klass: UICollectionReusableView.Type, indexPath: NSIndexPath) -> T? {
+    return dequeueReusableSupplementaryViewOfKind(elementKind, withReuseIdentifier: klass.tak_defaultIdentifier(), forIndexPath: indexPath) as? T
+  }
+  
+  public func tak_dequeueReusableSupplementaryViewOfSectionHeader<T: UICollectionReusableView>(klass: UICollectionReusableView.Type, indexPath: NSIndexPath) -> T? {
+    return tak_dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, klass: klass, indexPath: indexPath)
+  }
+  
+  public func tak_dequeueReusableSupplementaryViewOfSectionFooter<T: UICollectionReusableView>(klass: UICollectionReusableView.Type, indexPath: NSIndexPath) -> T? {
+    return tak_dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, klass: klass, indexPath: indexPath)
+  }
 }
