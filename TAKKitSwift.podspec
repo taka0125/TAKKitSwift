@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TAKKitSwift"
-  s.version          = "2.3.0"
+  s.version          = "2.4.0"
   s.summary          = "Util"
   s.homepage         = "https://github.com/taka0125/TAKKitSwift"
   s.license          = 'MIT'
