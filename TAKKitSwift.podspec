@@ -12,6 +12,8 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.10"
 
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '2.3' }
+
   s.subspec 'Core' do |ss|
     ss.source_files = 'Pod/Classes/Core/*.swift'
     ss.ios.source_files = 'Pod/Classes/Core/ios/*.swift'
