@@ -29,6 +29,14 @@ Then, run the following command:
 $ pod install
 ```
 
+## Versions
+
+| platform            | version |
+|---------------------|---------|
+| Xcode 8 / Swift 3.0 |  3.0.0  |
+| Xcode 8 / Swift 2.3 |  2.4.0  |
+| Xcode 7             |  2.3.0  |
+
 ## Author
 
 Takahiro Ooishi, taka0125@gmail.com

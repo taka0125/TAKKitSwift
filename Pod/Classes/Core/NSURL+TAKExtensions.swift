@@ -23,7 +23,7 @@ public extension NSURL {
   }
 
   public func tak_joined(paths: String...) -> NSURL {
-    return paths.reduce(self, combine: { $0.URLByAppendingPathComponent($1) })
+    return paths.reduce(self, combine: { $0.URLByAppendingPathComponent($1)! })
   }
 
   private class func tak_URLForDirectory(directory: NSSearchPathDirectory, domain: NSSearchPathDomainMask, url: NSURL?, create: Bool) -> NSURL {
