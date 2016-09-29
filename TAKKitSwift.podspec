@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TAKKitSwift"
-  s.version          = "2.4.0"
+  s.version          = "3.0.0"
   s.summary          = "Util"
   s.homepage         = "https://github.com/taka0125/TAKKitSwift"
   s.license          = 'MIT'
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.osx.deployment_target = "10.10"
 
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '2.3' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'Pod/Classes/Core/*.swift'

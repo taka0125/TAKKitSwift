@@ -10,16 +10,16 @@
 import Foundation
 import UIKit
 
-public class TAKUserDefaultsViewController: UIViewController {
-  @IBOutlet private weak var tableView: UITableView!
+final public class TAKUserDefaultsViewController: UIViewController {
+  @IBOutlet fileprivate weak var tableView: UITableView!
   
-  private let userDefaults = UserDefaults()
-  private var keys: [String] {
+  fileprivate let userDefaults = UserDefaults()
+  fileprivate var keys: [String] {
     return userDefaults.allKeys
   }
 
-  private var searchController: UISearchController
-  private var resultsController: TAKUserDefaultsSearchResultController
+  fileprivate var searchController: UISearchController
+  fileprivate var resultsController: TAKUserDefaultsSearchResultController
   
   public class func instantiate() -> TAKUserDefaultsViewController? {
     let storyboard = TAKUserDefaultsBundleHelper.storyboard()
@@ -47,11 +47,11 @@ public class TAKUserDefaultsViewController: UIViewController {
 // MARK: - Private Methods
 
 extension TAKUserDefaultsViewController {
-  private func setupResultsController() {
+  fileprivate func setupResultsController() {
     resultsController.tableView.delegate = self
   }
   
-  private func setupSearchController() {
+  fileprivate func setupSearchController() {
     searchController.searchResultsUpdater = self
     searchController.searchBar.sizeToFit()
     searchController.delegate = self
@@ -63,7 +63,7 @@ extension TAKUserDefaultsViewController {
     }
   }
   
-  private func setupTableView() {
+  fileprivate func setupTableView() {
     tableView.delegate = self
     tableView.dataSource = self
     tableView.estimatedRowHeight = 108.0
@@ -76,19 +76,19 @@ extension TAKUserDefaultsViewController {
 }
 
 extension TAKUserDefaultsViewController: UITableViewDataSource {
-  public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+  public func numberOfSections(in tableView: UITableView) -> Int {
     return 1
   }
   
-  public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return keys.count
   }
   
-  public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.tak_forceDequeueReusableCell(TAKUserDefaultsViewCell.self, indexPath: indexPath)
     cell.backgroundColor = tableView.backgroundColor
     
-    let key = keys[indexPath.row]
+    let key = keys[(indexPath as NSIndexPath).row]
     cell.bind(key, value: userDefaults[key])
     
     return cell
@@ -98,15 +98,15 @@ extension TAKUserDefaultsViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 
 extension TAKUserDefaultsViewController: UITableViewDelegate {
-  public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
   }
 }
 
 // MARK: - UISearchBarDelegate
 
 extension TAKUserDefaultsViewController: UISearchBarDelegate {
-  public func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+  public func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
     searchBar.resignFirstResponder()
   }
 }
@@ -119,7 +119,7 @@ extension TAKUserDefaultsViewController: UISearchControllerDelegate {
 // MARK: - UISearchResultsUpdating
 
 extension TAKUserDefaultsViewController: UISearchResultsUpdating {
-  public func updateSearchResultsForSearchController(searchController: UISearchController) {
+  public func updateSearchResults(for searchController: UISearchController) {
     guard let searchText = searchController.searchBar.text else { return }
     
     if let c = self.searchController.searchResultsController as? TAKUserDefaultsSearchResultController {

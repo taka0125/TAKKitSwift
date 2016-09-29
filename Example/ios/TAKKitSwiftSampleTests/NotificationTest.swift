@@ -11,27 +11,27 @@ import UIKit
 import XCTest
 import TAKKitSwift
 
-class NSNotificationTest: XCTestCase {
-  private struct Const {
+class NotificationTest: XCTestCase {
+  fileprivate struct Const {
     static let Name = "Test"
   }
   
   func testNotificationWithName() {
-    let n = NSNotification.tak_notification(Const.Name)
+    let n = Notification.tak_notification(Const.Name)
     
-    XCTAssertEqual(Const.Name, n.name, "")
+    XCTAssertEqual(Const.Name, n.name.rawValue, "")
     XCTAssertNil(n.object, "")
     XCTAssertNil(n.tak_parameters, "")
   }
   
   func testNotificationWithNameAndParameters() {
-    let parameters = ["key1": "value1", "key2": 2]
-    let n = NSNotification.tak_notification("Test", parameters: parameters)
+    let parameters: [String: String] = ["key1": "value1", "key2": "2"]
+    let n = Notification.tak_notification("Test", parameters: parameters)
 
-    XCTAssertEqual(Const.Name, n.name, "")
+    XCTAssertEqual(Const.Name, n.name.rawValue, "")
     XCTAssertNil(n.object, "")
     
-    if let params = n.tak_parameters as? [String: NSObject] {
+    if let params = n.tak_parameters as? [String: String] {
       XCTAssertEqual(params, parameters, "")
     } else {
       XCTFail("Mismatch Type")
@@ -39,13 +39,13 @@ class NSNotificationTest: XCTestCase {
   }
   
   func testNotification() {
-    let parameters = ["key1": "value1", "key2": 2]
-    let n = NSNotification.tak_notification("Test", object: nil, parameters: parameters)
+    let parameters: [String : String] = ["key1": "value1", "key2": "2"]
+    let n = Notification.tak_notification("Test", object: nil, parameters: parameters)
     
-    XCTAssertEqual(Const.Name, n.name, "")
+    XCTAssertEqual(Const.Name, n.name.rawValue, "")
     XCTAssertNil(n.object, "")
     
-    if let params = n.tak_parameters as? [String: NSObject] {
+    if let params = n.tak_parameters as? [String: String] {
       XCTAssertEqual(params, parameters, "")
     } else {
       XCTFail("Mismatch Type")

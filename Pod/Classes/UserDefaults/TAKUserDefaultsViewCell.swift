@@ -10,19 +10,19 @@
 import Foundation
 import UIKit
 
-public class TAKUserDefaultsViewCell: UITableViewCell {
-  private struct Const {
+final class TAKUserDefaultsViewCell: UITableViewCell {
+  fileprivate struct Const {
     static let Padding = CGFloat(23.0)
   }
   
-  @IBOutlet private weak var keyNameLabel: UILabel!
-  @IBOutlet private weak var classNameLabel: UILabel!
-  @IBOutlet private weak var valueLabel: UILabel!
+  @IBOutlet fileprivate weak var keyNameLabel: UILabel!
+  @IBOutlet fileprivate weak var classNameLabel: UILabel!
+  @IBOutlet fileprivate weak var valueLabel: UILabel!
   
-  func bind(key: String, value: AnyObject?) {
-    selectionStyle = .None
+  func bind(_ key: String, value: Any?) {
+    selectionStyle = .none
 
-    guard let value = value else { return }
+    guard let value = value as? AnyObject else { return }
     
     keyNameLabel?.text = key
     classNameLabel?.text = NSStringFromClass(value.classForCoder)

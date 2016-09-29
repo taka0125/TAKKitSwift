@@ -14,13 +14,13 @@ public protocol ControllerInstantiatable {
   associatedtype InstanceType: UIViewController = Self
   static var storyboardName: String { get }
   
-  static func createInstance() -> InstanceType?
+  static func makeInstance() -> InstanceType?
 }
 
 public extension ControllerInstantiatable {
-  static func createInstance() -> InstanceType? {
+  static func makeInstance() -> InstanceType? {
     let identifier = InstanceType.tak_defaultIdentifier()
     
-    return UIStoryboard(name: storyboardName, bundle: nil).instantiateViewControllerWithIdentifier(identifier) as? InstanceType
+    return UIStoryboard(name: storyboardName, bundle: nil).instantiateViewController(withIdentifier: identifier) as? InstanceType
   }
 }

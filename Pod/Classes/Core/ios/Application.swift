@@ -10,15 +10,15 @@
 import Foundation
 import UIKit
 
-public class Application {
-  public static let sharedApplication = Application()
+public final class Application {
+  public static let shared = Application()
   
-  public private(set) var bundleIdentifier = ""
-  public private(set) var version = ""
-  public private(set) var build = ""
+  public fileprivate(set) var bundleIdentifier = ""
+  public fileprivate(set) var version = ""
+  public fileprivate(set) var build = ""
   
-  private init() {
-    let bundle = NSBundle.mainBundle()
+  fileprivate init() {
+    let bundle = Bundle.main
     bundleIdentifier = bundle.bundleIdentifier ?? ""
     version = bundle.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
     build = bundle.infoDictionary?["CFBundleVersion"] as? String ?? ""

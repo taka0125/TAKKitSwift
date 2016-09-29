@@ -13,24 +13,24 @@ import TAKKitSwift
 
 class TAKBlockTest: XCTestCase {
   func testRunOnMainThread() {
-    let expectation = expectationWithDescription("run on MainThread")
+    let expectation = self.expectation(description: "run on MainThread")
     
     TAKBlock.runOnMainThread {
-      XCTAssertTrue(NSThread.currentThread().isMainThread, "")
+      XCTAssertTrue(Thread.current.isMainThread, "")
       expectation.fulfill()
     }
     
-    waitForExpectationsWithTimeout(1.0, handler: nil)
+    waitForExpectations(timeout: 1.0, handler: nil)
   }
   
   func testRunInBackground() {
-    let expectation = expectationWithDescription("run in Background")
+    let expectation = self.expectation(description: "run in Background")
     
     TAKBlock.runInBackground {
-      XCTAssertFalse(NSThread.currentThread().isMainThread, "")
+      XCTAssertFalse(Thread.current.isMainThread, "")
       expectation.fulfill()
     }
     
-    waitForExpectationsWithTimeout(1.0, handler: nil)
+    waitForExpectations(timeout: 1.0, handler: nil)
   }
 }

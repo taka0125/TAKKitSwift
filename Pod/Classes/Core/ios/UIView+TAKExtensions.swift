@@ -11,12 +11,12 @@ import Foundation
 import UIKit
 
 public extension UIView {
-  public class func tak_defaultNib(bundle: NSBundle = NSBundle.mainBundle()) -> UINib {
+  public class func tak_defaultNib(_ bundle: Bundle = Bundle.main) -> UINib {
     return UINib(nibName: tak_defaultIdentifier(), bundle: bundle)
   }
   
-  public class func tak_viewFromDefaultNib(bundle: NSBundle = NSBundle.mainBundle(), owner: AnyObject? = nil) -> UIView {
+  public class func tak_viewFromDefaultNib(_ bundle: Bundle = Bundle.main, owner: AnyObject? = nil) -> UIView {
     let nib = tak_defaultNib(bundle)
-    return nib.instantiateWithOwner(owner, options: nil)[0] as! UIView
+    return nib.instantiate(withOwner: owner, options: nil)[0] as! UIView
   }
 }

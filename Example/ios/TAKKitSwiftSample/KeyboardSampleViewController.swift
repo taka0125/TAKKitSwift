@@ -10,15 +10,15 @@ import UIKit
 import TAKKitSwift
 
 final class KeyboardSampleViewController: UIViewController {
-  @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-  private let observer = KeyboardDisplayObserver()
+  @IBOutlet fileprivate weak var bottomConstraint: NSLayoutConstraint!
+  fileprivate let observer = KeyboardDisplayObserver()
   
   override func viewDidLoad() {
     observer.observe(view, callback: { [weak self] eventType, keyboardSize in
       switch eventType {
-      case .WillShow:
+      case .willShow:
         self?.bottomConstraint.constant = keyboardSize.height + 8.0
-      case .WillHide:
+      case .willHide:
         self?.bottomConstraint.constant = 8.0
       }
     })

@@ -12,12 +12,12 @@ import UIKit
 import TAKKitSwift
 
 class PhotoSelectorSampleViewController: UITableViewController {
-  @IBOutlet private weak var imageView: UIImageView!
+  @IBOutlet fileprivate weak var imageView: UIImageView!
 
-  private var selector: PhotoSelector?
+  fileprivate var selector: PhotoSelector?
 
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
     
     if indexPath.section != 1 { return }
     
@@ -37,16 +37,16 @@ class PhotoSelectorSampleViewController: UITableViewController {
     selector = PhotoSelector()
   }
   
-  private func launchPhotoLibrary() {
+  fileprivate func launchPhotoLibrary() {
     selector?.launchPhotoLibrary(false,
       success: { [weak self] image in
         self?.imageView.image = image
       },
       failure: { error in
         switch error {
-        case .PhotoAccessDenied:
+        case .photoAccessDenied:
           TAKAlert.show("Photo access denied.")
-        case .Cancelled:
+        case .cancelled:
           TAKAlert.show("Cancelled")
         default:
           print(error)
@@ -55,18 +55,18 @@ class PhotoSelectorSampleViewController: UITableViewController {
     )
   }
   
-  private func launchFrontCamera() {
+  fileprivate func launchFrontCamera() {
     selector?.launchFrontCamera(true,
       success: { [weak self] image in
         self?.imageView.image = image
       },
       failure: { error in
         switch error {
-        case .CameraIsNotAvailable, .FrontCameraIsNotAvailable:
+        case .cameraIsNotAvailable, .frontCameraIsNotAvailable:
           TAKAlert.show("Can't launch front camera.")
-        case .CameraAccessDenied:
+        case .cameraAccessDenied:
           TAKAlert.show("Camera access denied.")
-        case .Cancelled:
+        case .cancelled:
           TAKAlert.show("Cancelled")
         default:
           print(error)
@@ -75,18 +75,18 @@ class PhotoSelectorSampleViewController: UITableViewController {
     )
   }
   
-  private func launchRearCamera() {
+  fileprivate func launchRearCamera() {
     selector?.launchRearCamera(true,
       success: { [weak self] image in
         self?.imageView.image = image
       },
       failure: { error in
         switch error {
-        case .CameraIsNotAvailable, .RearCameraIsNotAvailable:
+        case .cameraIsNotAvailable, .rearCameraIsNotAvailable:
           TAKAlert.show("Can't launch rear camera.")
-        case .CameraAccessDenied:
+        case .cameraAccessDenied:
           TAKAlert.show("Camera access denied.")
-        case .Cancelled:
+        case .cancelled:
           TAKAlert.show("Cancelled")
         default:
           print(error)
