@@ -28,3 +28,5 @@ Pods/
 # bundle
 vendor/
 .bundle
+Example/ios/Pods
+Example/osx/Pods

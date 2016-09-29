@@ -11,14 +11,14 @@ import Foundation
 import UIKit
 
 public struct TAKUserDefaultsBundleHelper {
-  private struct Const {
+  fileprivate struct Const {
     static let Name = "TAKUserDefaults"
     static let Directory = "Frameworks/TAKKitSwift.framework"
   }
   
-  public static func bundle() -> NSBundle? {
-    if let path = NSBundle.mainBundle().pathForResource(Const.Name, ofType: "bundle", inDirectory: Const.Directory) {
-      return NSBundle(path: path)
+  public static func bundle() -> Bundle? {
+    if let path = Bundle.main.path(forResource: Const.Name, ofType: "bundle", inDirectory: Const.Directory) {
+      return Bundle(path: path)
     }
     return nil
   }

@@ -8,15 +8,15 @@
 //
 
 public struct UserDefaults {
-  let allKeys: [String]
+  public let allKeys: [String]
   
-  private let items: NSDictionary
+  fileprivate let items: [String: Any]
 
-  init() {
-    items = NSUserDefaults.standardUserDefaults().dictionaryRepresentation()
+  public init() {
+    items = Foundation.UserDefaults.standard.dictionaryRepresentation()
     
-    allKeys = items.allKeys.sort { (a, b) -> Bool in
-      if let a0 = a as? String, b0 = b as? String {
+    allKeys = items.keys.sorted { (a, b) -> Bool in
+      if let a0 = a as? String, let b0 = b as? String {
         return a0 < b0
       }
       
@@ -24,13 +24,13 @@ public struct UserDefaults {
     }.map { ($0 as? String) ?? "" }
   }
   
-  subscript(key: String) -> AnyObject? {
+  public subscript(key: String) -> Any? {
     return items[key]
   }
   
-  func filteredKeys(text: String) -> [String] {
+  public func filteredKeys(_ text: String) -> [String] {
     let predicate = NSPredicate(format: "SELF contains[c] %@", text)
-    let keys = (allKeys as NSArray).filteredArrayUsingPredicate(predicate) as? [String]
+    let keys = (allKeys as NSArray).filtered(using: predicate) as? [String]
     return keys ?? []
   }
 }

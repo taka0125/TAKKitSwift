@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1FC37DA4573A6C49290894DC /* Pods_TAKKitSwiftSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775758D6E7813BE361A6B6A9 /* Pods_TAKKitSwiftSample.framework */; };
-		53258CAB0289402A98442554 /* Pods_TAKKitSwiftSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4478473CA3B4E7B425A58E82 /* Pods_TAKKitSwiftSampleTests.framework */; };
+		4EB86D4125A4BB355807D019 /* Pods_TAKKitSwiftSampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B1FFE84B339632A6987B4E0 /* Pods_TAKKitSwiftSampleTests.framework */; };
+		6F0CE839CA7D3065432DC592 /* Pods_TAKKitSwiftSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AE98A1E67386349BB61599B7 /* Pods_TAKKitSwiftSample.framework */; };
 		864470E81A979FE600110272 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864470E71A979FE600110272 /* AppDelegate.swift */; };
 		864470EA1A979FE600110272 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864470E91A979FE600110272 /* ViewController.swift */; };
 		864470ED1A979FE600110272 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 864470EB1A979FE600110272 /* Main.storyboard */; };
@@ -16,7 +16,7 @@
 		864470F21A979FE600110272 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 864470F01A979FE600110272 /* LaunchScreen.xib */; };
 		868599121C218B8A00410AD7 /* KeyboardSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868599111C218B8A00410AD7 /* KeyboardSampleViewController.swift */; };
 		8690249E1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8690249D1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift */; };
-		8692EFE81BB7A05600898709 /* NSNotificationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE61BB7A05600898709 /* NSNotificationTest.swift */; };
+		8692EFE81BB7A05600898709 /* NotificationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE61BB7A05600898709 /* NotificationTest.swift */; };
 		8692EFE91BB7A05600898709 /* TAKBlockTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692EFE71BB7A05600898709 /* TAKBlockTest.swift */; };
 /* End PBXBuildFile section */
 
@@ -31,9 +31,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2EC7897A5B550E900AE5CA4F /* Pods-TAKKitSwiftSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSampleTests/Pods-TAKKitSwiftSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
-		4478473CA3B4E7B425A58E82 /* Pods_TAKKitSwiftSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAKKitSwiftSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		775758D6E7813BE361A6B6A9 /* Pods_TAKKitSwiftSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAKKitSwiftSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		864470E21A979FE600110272 /* TAKKitSwiftSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAKKitSwiftSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		864470E61A979FE600110272 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		864470E71A979FE600110272 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -45,11 +42,14 @@
 		8690249D1BDA745500B6A66A /* PhotoSelectorSampleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectorSampleViewController.swift; sourceTree = "<group>"; };
 		8692EFDB1BB7A02A00898709 /* TAKKitSwiftSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TAKKitSwiftSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8692EFDF1BB7A02B00898709 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8692EFE61BB7A05600898709 /* NSNotificationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationTest.swift; sourceTree = "<group>"; };
+		8692EFE61BB7A05600898709 /* NotificationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationTest.swift; sourceTree = "<group>"; };
 		8692EFE71BB7A05600898709 /* TAKBlockTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TAKBlockTest.swift; sourceTree = "<group>"; };
-		A4D73D43BB75EDCE2DC247C4 /* Pods-TAKKitSwiftSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSampleTests/Pods-TAKKitSwiftSampleTests.release.xcconfig"; sourceTree = "<group>"; };
-		A9D6DE33EA6BBC75B3A42907 /* Pods-TAKKitSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSample/Pods-TAKKitSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
-		B61AEF98FD2F7EB310D161E7 /* Pods-TAKKitSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSample/Pods-TAKKitSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
+		8B1FFE84B339632A6987B4E0 /* Pods_TAKKitSwiftSampleTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAKKitSwiftSampleTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9DE5CD28344644F6AD8E561A /* Pods-TAKKitSwiftSampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSampleTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSampleTests/Pods-TAKKitSwiftSampleTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ABABD762245B3A664C04391D /* Pods-TAKKitSwiftSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSample.release.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSample/Pods-TAKKitSwiftSample.release.xcconfig"; sourceTree = "<group>"; };
+		AE98A1E67386349BB61599B7 /* Pods_TAKKitSwiftSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TAKKitSwiftSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8C16AFF61EC68AEB5229F63 /* Pods-TAKKitSwiftSampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSampleTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSampleTests/Pods-TAKKitSwiftSampleTests.release.xcconfig"; sourceTree = "<group>"; };
+		DE0A95A0F48EF30775523248 /* Pods-TAKKitSwiftSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TAKKitSwiftSample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TAKKitSwiftSample/Pods-TAKKitSwiftSample.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1FC37DA4573A6C49290894DC /* Pods_TAKKitSwiftSample.framework in Frameworks */,
+				6F0CE839CA7D3065432DC592 /* Pods_TAKKitSwiftSample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,20 +65,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				53258CAB0289402A98442554 /* Pods_TAKKitSwiftSampleTests.framework in Frameworks */,
+				4EB86D4125A4BB355807D019 /* Pods_TAKKitSwiftSampleTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		58F163D2AE0BD14235A3F4A7 /* Pods */ = {
+		037E339F62666CEEED769771 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				B61AEF98FD2F7EB310D161E7 /* Pods-TAKKitSwiftSample.debug.xcconfig */,
-				A9D6DE33EA6BBC75B3A42907 /* Pods-TAKKitSwiftSample.release.xcconfig */,
-				2EC7897A5B550E900AE5CA4F /* Pods-TAKKitSwiftSampleTests.debug.xcconfig */,
-				A4D73D43BB75EDCE2DC247C4 /* Pods-TAKKitSwiftSampleTests.release.xcconfig */,
+				DE0A95A0F48EF30775523248 /* Pods-TAKKitSwiftSample.debug.xcconfig */,
+				ABABD762245B3A664C04391D /* Pods-TAKKitSwiftSample.release.xcconfig */,
+				9DE5CD28344644F6AD8E561A /* Pods-TAKKitSwiftSampleTests.debug.xcconfig */,
+				C8C16AFF61EC68AEB5229F63 /* Pods-TAKKitSwiftSampleTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -89,8 +89,8 @@
 				864470E41A979FE600110272 /* TAKKitSwiftSample */,
 				8692EFDC1BB7A02B00898709 /* TAKKitSwiftSampleTests */,
 				864470E31A979FE600110272 /* Products */,
-				58F163D2AE0BD14235A3F4A7 /* Pods */,
-				CDE7B366ECE4C914E2644A71 /* Frameworks */,
+				037E339F62666CEEED769771 /* Pods */,
+				B695F35054EC158EF7FFE931 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -138,17 +138,17 @@
 		8692EFE51BB7A03F00898709 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				8692EFE61BB7A05600898709 /* NSNotificationTest.swift */,
+				8692EFE61BB7A05600898709 /* NotificationTest.swift */,
 				8692EFE71BB7A05600898709 /* TAKBlockTest.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
 		};
-		CDE7B366ECE4C914E2644A71 /* Frameworks */ = {
+		B695F35054EC158EF7FFE931 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				775758D6E7813BE361A6B6A9 /* Pods_TAKKitSwiftSample.framework */,
-				4478473CA3B4E7B425A58E82 /* Pods_TAKKitSwiftSampleTests.framework */,
+				AE98A1E67386349BB61599B7 /* Pods_TAKKitSwiftSample.framework */,
+				8B1FFE84B339632A6987B4E0 /* Pods_TAKKitSwiftSampleTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -160,12 +160,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 864471011A979FE600110272 /* Build configuration list for PBXNativeTarget "TAKKitSwiftSample" */;
 			buildPhases = (
-				487915D56FE31792B01CD6A1 /* [CP] Check Pods Manifest.lock */,
+				D2079445E897F6CC9566BB22 /* [CP] Check Pods Manifest.lock */,
 				864470DE1A979FE600110272 /* Sources */,
 				864470DF1A979FE600110272 /* Frameworks */,
 				864470E01A979FE600110272 /* Resources */,
-				FCDD0ADF8F81E0E7F162ACDC /* [CP] Embed Pods Frameworks */,
-				D1C8519820189827C24A9C4A /* [CP] Copy Pods Resources */,
+				5175EAF21A99C11B4D5E2ACB /* [CP] Embed Pods Frameworks */,
+				46D273258AF09F8D6DD1164E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -180,12 +180,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8692EFE21BB7A02B00898709 /* Build configuration list for PBXNativeTarget "TAKKitSwiftSampleTests" */;
 			buildPhases = (
-				82A1D0742329BFE142A0491D /* [CP] Check Pods Manifest.lock */,
+				763090396228B3DB175B13C7 /* [CP] Check Pods Manifest.lock */,
 				8692EFD71BB7A02A00898709 /* Sources */,
 				8692EFD81BB7A02A00898709 /* Frameworks */,
 				8692EFD91BB7A02A00898709 /* Resources */,
-				FB9F380B0BFB8DD494E04A29 /* [CP] Embed Pods Frameworks */,
-				01AAB54C120ECF7D25534663 /* [CP] Copy Pods Resources */,
+				42DAAB2CA7951132FEF263FB /* [CP] Embed Pods Frameworks */,
+				38BD394F9A60F5FEEC3688EF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -204,14 +204,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Takahiro Ooishi";
 				TargetAttributes = {
 					864470E11A979FE600110272 = {
 						CreatedOnToolsVersion = 6.1.1;
+						LastSwiftMigration = 0800;
 					};
 					8692EFDA1BB7A02A00898709 = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 						TestTargetID = 864470E11A979FE600110272;
 					};
 				};
@@ -256,7 +258,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		01AAB54C120ECF7D25534663 /* [CP] Copy Pods Resources */ = {
+		38BD394F9A60F5FEEC3688EF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -271,52 +273,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TAKKitSwiftSampleTests/Pods-TAKKitSwiftSampleTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		487915D56FE31792B01CD6A1 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		82A1D0742329BFE142A0491D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D1C8519820189827C24A9C4A /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TAKKitSwiftSample/Pods-TAKKitSwiftSample-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FB9F380B0BFB8DD494E04A29 /* [CP] Embed Pods Frameworks */ = {
+		42DAAB2CA7951132FEF263FB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -331,7 +288,22 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TAKKitSwiftSampleTests/Pods-TAKKitSwiftSampleTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FCDD0ADF8F81E0E7F162ACDC /* [CP] Embed Pods Frameworks */ = {
+		46D273258AF09F8D6DD1164E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TAKKitSwiftSample/Pods-TAKKitSwiftSample-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5175EAF21A99C11B4D5E2ACB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -344,6 +316,36 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TAKKitSwiftSample/Pods-TAKKitSwiftSample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		763090396228B3DB175B13C7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D2079445E897F6CC9566BB22 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -365,7 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8692EFE91BB7A05600898709 /* TAKBlockTest.swift in Sources */,
-				8692EFE81BB7A05600898709 /* NSNotificationTest.swift in Sources */,
+				8692EFE81BB7A05600898709 /* NotificationTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,8 +414,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -422,6 +426,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -439,7 +444,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -456,8 +461,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -465,6 +472,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -474,39 +482,45 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_VERSION = 2.3;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
 		864471021A979FE600110272 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B61AEF98FD2F7EB310D161E7 /* Pods-TAKKitSwiftSample.debug.xcconfig */;
+			baseConfigurationReference = DE0A95A0F48EF30775523248 /* Pods-TAKKitSwiftSample.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TAKKitSwiftSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.heartofsword.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		864471031A979FE600110272 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9D6DE33EA6BBC75B3A42907 /* Pods-TAKKitSwiftSample.release.xcconfig */;
+			baseConfigurationReference = ABABD762245B3A664C04391D /* Pods-TAKKitSwiftSample.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = TAKKitSwiftSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "net.heartofsword.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		8692EFE31BB7A02B00898709 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2EC7897A5B550E900AE5CA4F /* Pods-TAKKitSwiftSampleTests.debug.xcconfig */;
+			baseConfigurationReference = 9DE5CD28344644F6AD8E561A /* Pods-TAKKitSwiftSampleTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -517,14 +531,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.heartofsword.TAKKitSwiftSampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TAKKitSwiftSample.app/TAKKitSwiftSample";
 			};
 			name = Debug;
 		};
 		8692EFE41BB7A02B00898709 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4D73D43BB75EDCE2DC247C4 /* Pods-TAKKitSwiftSampleTests.release.xcconfig */;
+			baseConfigurationReference = C8C16AFF61EC68AEB5229F63 /* Pods-TAKKitSwiftSampleTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -535,6 +551,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.heartofsword.TAKKitSwiftSampleTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TAKKitSwiftSample.app/TAKKitSwiftSample";
 			};
 			name = Release;

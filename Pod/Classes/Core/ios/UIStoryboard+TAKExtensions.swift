@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 
 public extension UIStoryboard {
-  public func tak_instantiateViewController<T: UIViewController>(klass: T.Type) -> T? {
-    return instantiateViewControllerWithIdentifier(T.tak_defaultIdentifier()) as? T
+  public func tak_instantiateViewController<T: UIViewController>(_ klass: T.Type) -> T? {
+    return instantiateViewController(withIdentifier: T.tak_defaultIdentifier()) as? T
   }
 }

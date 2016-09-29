@@ -10,86 +10,80 @@
 import Foundation
 
 public struct TAKBlock {
-  public typealias VoidBlock = Void -> Void
+  public typealias VoidBlock = (Void) -> Void
   
   // https://developer.apple.com/library/ios/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html#//apple_ref/doc/uid/TP40015243-CH39-SW1
-  public enum QOS {
-    case UserInteractive
-    case UserInitiated
-    case Default
-    case Utility
-    case Background
+  public enum Qos {
+    case userInteractive
+    case userInitiated
+    case `default`
+    case utility
+    case background
     
-    public var queue: dispatch_queue_t {
-      return dispatch_get_global_queue(identifier, 0)
+    public var queue: DispatchQueue {
+      return DispatchQueue.global(qos: identifier)
     }
     
-    private var identifier: qos_class_t {
+    fileprivate var identifier: DispatchQoS.QoSClass {
       switch self {
-      case .UserInteractive: return QOS_CLASS_USER_INTERACTIVE
-      case .UserInitiated: return QOS_CLASS_USER_INITIATED
-      case .Default: return QOS_CLASS_DEFAULT
-      case .Utility: return QOS_CLASS_UTILITY
-      case .Background: return QOS_CLASS_BACKGROUND
+      case .userInteractive: return .userInteractive
+      case .userInitiated: return .userInitiated
+      case .default: return .default
+      case .utility: return .utility
+      case .background: return .background
       }
     }
   }
   
   // MARK: - Create queue
   
-  public static func createSerialQueue(name: String) -> dispatch_queue_t {
-    return dispatch_queue_create(name, DISPATCH_QUEUE_SERIAL)
+  public static func createSerialQueue(_ name: String) -> DispatchQueue {
+    return DispatchQueue(label: name, attributes: [])
   }
   
-  public static func createConcurrentQueue(name: String) -> dispatch_queue_t {
-    return dispatch_queue_create(name, DISPATCH_QUEUE_CONCURRENT)
+  public static func createConcurrentQueue(_ name: String) -> DispatchQueue {
+    return DispatchQueue(label: name, attributes: DispatchQueue.Attributes.concurrent)
   }
   
   // MARK: - MainThread
   
-  public static func runOnMainThread(block: VoidBlock) {
-    run(dispatch_get_main_queue(), block: block)
+  public static func runOnMainThread(_ block: @escaping VoidBlock) {
+    run(DispatchQueue.main, block: block)
   }
   
-  public static func runOnMainThread(delay: Double, block: VoidBlock) {
-    run(dispatch_get_main_queue(), delay: delay, block: block)
+  public static func runOnMainThread(_ delay: Double, block: @escaping VoidBlock) {
+    run(DispatchQueue.main, delay: delay, block: block)
   }
   
   // MARK: - Background
   
-  public static func runInBackground(block: VoidBlock) {
-    run(.Utility, block: block)
+  public static func runInBackground(_ block: @escaping VoidBlock) {
+    run(.utility, block: block)
   }
   
-  public static func runInBackground(delay: Double, block: VoidBlock) {
-    run(.Utility, delay: delay, block: block)
+  public static func runInBackground(_ delay: Double, block: @escaping VoidBlock) {
+    run(.utility, delay: delay, block: block)
   }
   
   // MARK: - Queue
   
-  public static func run(queue: dispatch_queue_t, block: VoidBlock) {
-    dispatch_async(queue, block)
+  public static func run(_ queue: DispatchQueue, block: @escaping VoidBlock) {
+    queue.async(execute: block)
   }
   
-  public static func run(queue: dispatch_queue_t, delay: Double, block: VoidBlock) {
+  public static func run(_ queue: DispatchQueue, delay: Double, block: @escaping VoidBlock) {
     let d = Int64(delay * Double(NSEC_PER_SEC))
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, d), queue, block)
+    queue.asyncAfter(deadline: DispatchTime.now() + Double(d) / Double(NSEC_PER_SEC), execute: block)
   }
   
   // MARK: - QOS
   
-  public static func run(qos: QOS, block: VoidBlock) {
-    dispatch_async(qos.queue, block)
+  public static func run(_ qos: Qos, block: @escaping VoidBlock) {
+    qos.queue.async(execute: block)
   }
   
-  public static func run(qos: QOS,  delay: Double, block: VoidBlock) {
+  public static func run(_ qos: Qos,  delay: Double, block: @escaping VoidBlock) {
     let d = Int64(delay * Double(NSEC_PER_SEC))
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, d), qos.queue, block)
-  }
-
-  // MARK: Label
-
-  public static func currentQueueLabel() -> String {
-    return String(format: "%s", dispatch_queue_get_label(DISPATCH_CURRENT_QUEUE_LABEL))
+    qos.queue.asyncAfter(deadline: DispatchTime.now() + Double(d) / Double(NSEC_PER_SEC), execute: block)
   }
 }

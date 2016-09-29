@@ -19,7 +19,7 @@ public extension UIWindow {
 // MARK: - Private Methods
 
 extension UIWindow {
-  private func tak_findTopViewController(controller: UIViewController?) -> UIViewController? {
+  fileprivate func tak_findTopViewController(_ controller: UIViewController?) -> UIViewController? {
     guard let c = controller else { return nil }
     
     switch c {

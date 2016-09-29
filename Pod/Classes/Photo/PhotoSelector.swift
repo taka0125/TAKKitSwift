@@ -11,75 +11,74 @@ import UIKit
 import Photos
 import AVFoundation
 
-final public class PhotoSelector: NSObject {
-  public enum Error: ErrorType {
-    case CameraAccessDenied
-    case PhotoAccessDenied
-    case CameraIsNotAvailable
-    case FrontCameraIsNotAvailable
-    case RearCameraIsNotAvailable
-    case PhotoLibraryIsNotAvailable
-    case Cancelled
+public final class PhotoSelector: NSObject {
+  public enum CustomError: Error {
+    case cameraAccessDenied
+    case photoAccessDenied
+    case cameraIsNotAvailable
+    case frontCameraIsNotAvailable
+    case rearCameraIsNotAvailable
+    case photoLibraryIsNotAvailable
+    case cancelled
   }
   
   public typealias SuccessCallback = (UIImage?) -> Void
-  public typealias FailureCallback = (Error) -> Void
+  public typealias FailureCallback = (CustomError) -> Void
   
-  private var success: SuccessCallback?
-  private var failure: FailureCallback?
+  fileprivate var success: SuccessCallback?
+  fileprivate var failure: FailureCallback?
   
-  public func launchPhotoLibrary(allowsEditing: Bool, success: SuccessCallback, failure: FailureCallback? = nil) {
+  public func launchPhotoLibrary(_ allowsEditing: Bool, success: @escaping SuccessCallback, failure: @escaping FailureCallback = { _ in }) {
     self.success = success
     self.failure = failure
     
-    guard UIImagePickerController.isSourceTypeAvailable(.PhotoLibrary) else {
-      failure?(Error.PhotoLibraryIsNotAvailable)
+    guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+      failure(CustomError.photoLibraryIsNotAvailable)
       return
     }
     
     verifyAccessPhotoPermission { [weak self] in
       let picker = UIImagePickerController()
       picker.delegate = self
-      picker.sourceType = .PhotoLibrary
+      picker.sourceType = .photoLibrary
       picker.allowsEditing = allowsEditing
       
-      if let w = UIApplication.sharedApplication().delegate?.window, window = w, top = window.tak_topViewController() {
+      if let w = UIApplication.shared.delegate?.window, let window = w, let top = window.tak_topViewController() {
         TAKBlock.runOnMainThread {
-          top.presentViewController(picker, animated: true, completion: nil)
+          top.present(picker, animated: true, completion: nil)
         }
       }
     }
   }
   
-  public func launchFrontCamera(allowsEditing: Bool, success: SuccessCallback, failure: FailureCallback? = nil) {
-    launchCamera(.Front, allowsEditing: allowsEditing, success: success, failure: failure)
+  public func launchFrontCamera(_ allowsEditing: Bool, success: @escaping SuccessCallback, failure: @escaping FailureCallback = { _ in }) {
+    launchCamera(.front, allowsEditing: allowsEditing, success: success, failure: failure)
   }
   
-  public func launchRearCamera(allowsEditing: Bool, success: SuccessCallback, failure: FailureCallback? = nil) {
-    launchCamera(.Rear, allowsEditing: allowsEditing, success: success, failure: failure)
+  public func launchRearCamera(_ allowsEditing: Bool, success: @escaping SuccessCallback, failure: @escaping FailureCallback = { _ in }) {
+    launchCamera(.rear, allowsEditing: allowsEditing, success: success, failure: failure)
   }
 }
 
 // MARK: - Photo
 
-private extension PhotoSelector {
-  private func verifyAccessPhotoPermission(success: Void -> Void) {
+extension PhotoSelector {
+  fileprivate func verifyAccessPhotoPermission(_ success: @escaping (Void) -> Void) {
     switch PHPhotoLibrary.authorizationStatus() {
-    case .Authorized:
+    case .authorized:
       success()
-    case .Restricted, .Denied:
-      failure?(Error.PhotoAccessDenied)
-    case .NotDetermined:
+    case .restricted, .denied:
+      failure?(CustomError.photoAccessDenied)
+    case .notDetermined:
       requestAccessForPhoto(success)
     }
   }
   
-  
-  private func requestAccessForPhoto(success: Void -> Void) {
+  fileprivate func requestAccessForPhoto(_ success: @escaping (Void) -> Void) {
     TAKBlock.runOnMainThread {
       PHPhotoLibrary.requestAuthorization { [weak self] (status) -> Void in
-        guard status == .Authorized else {
-          self?.failure?(Error.PhotoAccessDenied)
+        guard status == .authorized else {
+          self?.failure?(CustomError.photoAccessDenied)
           
           return
         }
@@ -92,22 +91,22 @@ private extension PhotoSelector {
 
 // MARK: - Camera
 
-private extension PhotoSelector {
-  private func launchCamera(cameraDevice: UIImagePickerControllerCameraDevice, allowsEditing: Bool, success: SuccessCallback, failure: FailureCallback? = nil) {
+extension PhotoSelector {
+  fileprivate func launchCamera(_ cameraDevice: UIImagePickerControllerCameraDevice, allowsEditing: Bool, success: @escaping SuccessCallback, failure: @escaping FailureCallback = {_ in }) {
     self.success = success
     self.failure = failure
     
-    guard UIImagePickerController.isSourceTypeAvailable(.Camera) else {
-      failure?(Error.CameraIsNotAvailable)
+    guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+      failure(CustomError.cameraIsNotAvailable)
       return
     }
     
     guard UIImagePickerController.isCameraDeviceAvailable(cameraDevice) else {
       switch cameraDevice {
-      case .Front:
-        failure?(Error.FrontCameraIsNotAvailable)
-      case .Rear:
-        failure?(Error.RearCameraIsNotAvailable)
+      case .front:
+        failure(CustomError.frontCameraIsNotAvailable)
+      case .rear:
+        failure(CustomError.rearCameraIsNotAvailable)
       }
       
       return
@@ -116,36 +115,36 @@ private extension PhotoSelector {
     verifyAccessCameraPermission { [weak self] in
       let picker = UIImagePickerController()
       picker.delegate = self
-      picker.sourceType = .Camera
+      picker.sourceType = .camera
       picker.cameraDevice = cameraDevice
       picker.allowsEditing = allowsEditing
       
-      if let w = UIApplication.sharedApplication().delegate?.window, window = w, top = window.tak_topViewController() {
+      if let w = UIApplication.shared.delegate?.window, let window = w, let top = window.tak_topViewController() {
         TAKBlock.runOnMainThread {
-          top.presentViewController(picker, animated: true, completion: nil)
+          top.present(picker, animated: true, completion: nil)
         }
       }
     }
   }
   
-  private func verifyAccessCameraPermission(success: Void -> Void) {
-    let status = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+  fileprivate func verifyAccessCameraPermission(_ success: @escaping (Void) -> Void) {
+    let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
     switch status {
-    case .Authorized:
+    case .authorized:
       success()
-    case .Restricted, .Denied:
-      failure?(Error.CameraAccessDenied)
-    case .NotDetermined:
+    case .restricted, .denied:
+      failure?(CustomError.cameraAccessDenied)
+    case .notDetermined:
       requestAccessForCamera(success)
     }
   }
   
-  private func requestAccessForCamera(success: Void -> Void) {
+  fileprivate func requestAccessForCamera(_ success: @escaping (Void) -> Void) {
     TAKBlock.runOnMainThread {
-      AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo,
+      AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo,
         completionHandler: { [weak self] (granted) in
           guard granted else {
-            self?.failure?(Error.CameraAccessDenied)
+            self?.failure?(CustomError.cameraAccessDenied)
             return
           }
           
@@ -160,9 +159,9 @@ private extension PhotoSelector {
 
 // privateにできない…
 extension PhotoSelector: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  public func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
-    if let w = UIApplication.sharedApplication().delegate?.window, window = w, top = window.tak_topViewController() {
-      top.dismissViewControllerAnimated(true, completion: { [weak self] in
+  public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    if let w = UIApplication.shared.delegate?.window, let window = w, let top = window.tak_topViewController() {
+      top.dismiss(animated: true, completion: { [weak self] in
         self?.success?(info[UIImagePickerControllerOriginalImage] as? UIImage)
         })
       
@@ -172,15 +171,15 @@ extension PhotoSelector: UIImagePickerControllerDelegate, UINavigationController
     success?(info[UIImagePickerControllerOriginalImage] as? UIImage)
   }
   
-  public func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-    if let w = UIApplication.sharedApplication().delegate?.window, window = w, top = window.tak_topViewController() {
-      top.dismissViewControllerAnimated(true, completion: { [weak self] in
-        self?.failure?(Error.Cancelled)
+  public func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+    if let w = UIApplication.shared.delegate?.window, let window = w, let top = window.tak_topViewController() {
+      top.dismiss(animated: true, completion: { [weak self] in
+        self?.failure?(CustomError.cancelled)
         })
       
       return
     }
     
-    failure?(Error.Cancelled)
+    failure?(CustomError.cancelled)
   }
 }

@@ -11,6 +11,6 @@ import Foundation
 
 public extension NSObject {
   public class func tak_defaultIdentifier() -> String {
-    return NSStringFromClass(self).componentsSeparatedByString(".").last!
+    return NSStringFromClass(self).components(separatedBy: ".").last!
   }
 }

@@ -8,8 +8,8 @@
 //
 
 final class TAKUserDefaultsSearchResultController: UITableViewController {
-  private let userDefaults: UserDefaults
-  private var keys: [String]
+  fileprivate let userDefaults: UserDefaults
+  fileprivate var keys: [String]
   
   init(userDefaults: UserDefaults) {
     keys = []
@@ -27,7 +27,7 @@ final class TAKUserDefaultsSearchResultController: UITableViewController {
     setupTableView()
   }
   
-  func updateKeys(keys: [String]) {
+  func updateKeys(_ keys: [String]) {
     self.keys = keys
     tableView?.reloadData()
   }
@@ -36,7 +36,7 @@ final class TAKUserDefaultsSearchResultController: UITableViewController {
 // MARK: - TableView
 
 extension TAKUserDefaultsSearchResultController {
-  private func setupTableView() {
+  fileprivate func setupTableView() {
     tableView.estimatedRowHeight = 108.0
     tableView.rowHeight = UITableViewAutomaticDimension
     
@@ -45,15 +45,15 @@ extension TAKUserDefaultsSearchResultController {
     }
   }
   
-  override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+  override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return keys.count
   }
   
-  override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+  override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.tak_forceDequeueReusableCell(TAKUserDefaultsViewCell.self, indexPath: indexPath)
     cell.backgroundColor = tableView.backgroundColor
     
-    let key = keys[indexPath.row]
+    let key = keys[(indexPath as NSIndexPath).row]
     cell.bind(key, value: userDefaults[key])
     
     return cell

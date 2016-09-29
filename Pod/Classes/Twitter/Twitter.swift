@@ -11,49 +11,51 @@ import Foundation
 import Accounts
 import STTwitter
 
-final public class Twitter {
+public final class Twitter {
   public typealias OAuthToken = String
   public typealias OAuthTokenSecret = String
   public typealias UserId = String
   public typealias ScreenName = String
   
-  public enum Error: ErrorType {
-    case Unknown(error: NSError)
-    case NotGranted
-    case HasNoAccounts
-    case ReverseOAuthTokenRequestFailed(error: NSError)
-    case ReverseAuthAccessTokenFailed(error: NSError)
-    case VerifyCredentialsWithUserFailed(error: NSError)
-    case OAuthTokenIsEmpty
-    case OAuthTokenSecretIsEmpty
+  public enum CustomError: Error {
+    case unknown(error: Error?)
+    case notGranted
+    case hasNoAccounts
+    case reverseOAuthTokenRequestFailed(error: Error?)
+    case reverseAuthAccessTokenFailed(error: Error?)
+    case verifyCredentialsWithUserFailed(error: Error?)
+    case oAuthTokenIsEmpty
+    case oAuthTokenSecretIsEmpty
+    case userIdIsEmpty
+    case screenNameIsEmpty
   }
   
-  private let consumerKey: String
-  private let consumerSecret: String
+  fileprivate let consumerKey: String
+  fileprivate let consumerSecret: String
   
   public init(consumerKey: String, consumerSecret: String) {
     self.consumerKey = consumerKey
     self.consumerSecret = consumerSecret
   }
   
-  public func fetchAllAccounts(success: [ACAccount] -> Void, failure: Error -> Void) {
+  public func fetchAllAccounts(_ success: @escaping ([ACAccount]) -> Void, failure: @escaping (CustomError) -> Void) {
     let store = ACAccountStore()
-    let accountType = store.accountTypeWithAccountTypeIdentifier(ACAccountTypeIdentifierTwitter)
+    let accountType = store.accountType(withAccountTypeIdentifier: ACAccountTypeIdentifierTwitter)
     
-    store.requestAccessToAccountsWithType(accountType, options: nil,
+    store.requestAccessToAccounts(with: accountType, options: nil,
       completion: { (granted, error) in
         guard granted else {
-          failure(Error.NotGranted)
+          failure(CustomError.notGranted)
           return
         }
         
         if let error = error {
-          failure(Error.Unknown(error: error))
+          failure(CustomError.unknown(error: error as NSError))
           return
         }
         
-        guard let accounts = store.accountsWithAccountType(accountType) as? [ACAccount] where accounts.count > 0 else {
-          failure(Error.HasNoAccounts)
+        guard let accounts = store.accounts(with: accountType) as? [ACAccount] , accounts.count > 0 else {
+          failure(CustomError.hasNoAccounts)
           return
         }
         
@@ -62,47 +64,62 @@ final public class Twitter {
     )
   }
   
-  public func reverseAuth(account: ACAccount, success: (OAuthToken, OAuthTokenSecret, UserId, ScreenName) -> Void, failure: Error -> Void) {
-    let api = STTwitterAPI(OAuthConsumerKey: consumerKey, consumerSecret: consumerSecret)
-    api.postReverseOAuthTokenRequest(
+  public func reverseAuth(_ account: ACAccount, success: @escaping (OAuthToken, OAuthTokenSecret, UserId, ScreenName) -> Void, failure: @escaping (CustomError) -> Void) {
+    let api = STTwitterAPI(oAuthConsumerKey: consumerKey, consumerSecret: consumerSecret)
+    api?.postReverseOAuthTokenRequest(
       { (authenticationHeader) in
-        let osApi = STTwitterAPI.twitterAPIOSWithAccount(account, delegate: nil)
-        osApi.verifyCredentialsWithUserSuccessBlock(
-          { _ in
-            osApi.postReverseAuthAccessTokenWithAuthenticationHeader(authenticationHeader,
+        guard let osApi = STTwitterAPI.twitterAPIOS(with: account, delegate: nil) else {
+          failure(CustomError.unknown(error: nil))
+
+          return
+        }
+        
+        osApi.verifyCredentials(
+          userSuccessBlock: { _ in
+            osApi.postReverseAuthAccessToken(withAuthenticationHeader: authenticationHeader,
               successBlock: { (oAuthToken, oAuthTokenSecret, userId, screenName) -> Void in
                 
                 // https://github.com/nst/STTwitter/commit/924e5a77f783a17d176de63fd8eca034f942c025
-                guard let oAuthToken = oAuthToken where !oAuthToken.isEmpty else {
-                  failure(Error.OAuthTokenIsEmpty)
+                guard let oAuthToken = oAuthToken, !oAuthToken.isEmpty else {
+                  failure(CustomError.oAuthTokenIsEmpty)
                   return
                 }
                 
-                guard let oAuthTokenSecret = oAuthTokenSecret where !oAuthTokenSecret.isEmpty else {
-                  failure(Error.OAuthTokenSecretIsEmpty)
+                guard let oAuthTokenSecret = oAuthTokenSecret, !oAuthTokenSecret.isEmpty else {
+                  failure(CustomError.oAuthTokenSecretIsEmpty)
+                  return
+                }
+                
+                guard let userId = userId, !userId.isEmpty else {
+                  failure(CustomError.userIdIsEmpty)
+                  return
+                }
+                
+                guard let screenName = screenName, !screenName.isEmpty else {
+                  failure(CustomError.screenNameIsEmpty)
                   return
                 }
                 
                 success(oAuthToken, oAuthTokenSecret, userId, screenName)
               },
               errorBlock: { error in
-                failure(Error.ReverseAuthAccessTokenFailed(error: error))
+                failure(CustomError.reverseAuthAccessTokenFailed(error: error))
               }
             )
           },
           errorBlock: { error in
-            failure(Error.VerifyCredentialsWithUserFailed(error: error))
+            failure(CustomError.verifyCredentialsWithUserFailed(error: error))
           }
         )
       },
       errorBlock: { (error) in
-        failure(Error.ReverseOAuthTokenRequestFailed(error: error))
+        failure(CustomError.reverseOAuthTokenRequestFailed(error: error))
       }
     )
   }
   
-  public func renewCredentials(account: ACAccount, completion: ACAccountStoreCredentialRenewalHandler? = nil) {
+  public func renewCredentials(_ account: ACAccount, completion: ACAccountStoreCredentialRenewalHandler? = nil) {
     let store = ACAccountStore()
-    store.renewCredentialsForAccount(account, completion: completion)
+    store.renewCredentials(for: account, completion: completion)
   }
 }

@@ -14,45 +14,45 @@ class ViewController: UITableViewController, ControllerInstantiatable {
   static let storyboardName = "Main"
   var value1 = 0
   
-  private var decimation = Decimation(interval: 1.0)
+  fileprivate var decimation = Decimation(interval: 1.0)
   
-  private enum Row: NSInteger {
-    case RunInBackground = 0
-    case RunOnMainThread
-    case ShowAlert
-    case UserDefaults
-    case Instantiatable
-    case Application
-    case PhotoSelector
-    case Keyboard
-    case NSURLSample
-    case Decimation
+  fileprivate enum Row: NSInteger {
+    case runInBackground = 0
+    case runOnMainThread
+    case showAlert
+    case userDefaults
+    case instantiatable
+    case application
+    case photoSelector
+    case keyboard
+    case nsurlSample
+    case decimation
   }
   
-  override func viewWillAppear(animated: Bool) {
+  override func viewWillAppear(_ animated: Bool) {
   }
   
-  override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+        
     if let row = Row(rawValue: indexPath.row) {
       switch row {
-      case .RunInBackground:
+      case .runInBackground:
         runInBackground()
-      case .RunOnMainThread:
+      case .runOnMainThread:
         runOnMainThread()
-      case .ShowAlert:
+      case .showAlert:
         showAlert()
-      case .UserDefaults:
+      case .userDefaults:
         showUserDefaults()
-      case .Instantiatable:
-        let c = ViewController.createInstance()
+      case .instantiatable:
+        let c = ViewController.makeInstance()
         print(c)
-      case .Application:
+      case .application:
         showApplicationInfo()
-      case .NSURLSample:
+      case .nsurlSample:
         doNSURLSample()
-      case .Decimation:
+      case .decimation:
         doDecimationSample()
       default:
         return
@@ -62,40 +62,38 @@ class ViewController: UITableViewController, ControllerInstantiatable {
 }
 
 extension ViewController {
-  private func runInBackground() {
+  fileprivate func runInBackground() {
     TAKBlock.runInBackground {
-      print("label = \(TAKBlock.currentQueueLabel())")
-      print("isMainThread = \(NSThread.currentThread().isMainThread)")
+      print("isMainThread = \(Thread.current.isMainThread)")
     }
   }
   
-  private func runOnMainThread() {
+  fileprivate func runOnMainThread() {
     TAKBlock.runOnMainThread {
-      print("label = \(TAKBlock.currentQueueLabel())")
-      print("isMainThread = \(NSThread.currentThread().isMainThread)")
+      print("isMainThread = \(Thread.current.isMainThread)")
     }
   }
   
-  private func showAlert() {
+  fileprivate func showAlert() {
     TAKAlert.show("Alert")
   }
   
-  private func showUserDefaults() {
+  fileprivate func showUserDefaults() {
     if let c = TAKUserDefaultsViewController.instantiate() {
       navigationController?.pushViewController(c, animated: true)
     }
   }
   
-  private func showApplicationInfo() {
-    print("bundleIdentifier = \(Application.sharedApplication.bundleIdentifier)")
-    print("version = \(Application.sharedApplication.version)")
-    print("build = \(Application.sharedApplication.build)")
+  fileprivate func showApplicationInfo() {
+    print("bundleIdentifier = \(Application.shared.bundleIdentifier)")
+    print("version = \(Application.shared.version)")
+    print("build = \(Application.shared.build)")
   }
   
-  private func doNSURLSample() {
-    let cachesDirectory = NSURL.tak_cachesDirectory()
-    let documentDirectory = NSURL.tak_documentDirectory()
-    let temporaryDirectory = NSURL.tak_temporaryDirectory()
+  fileprivate func doNSURLSample() {
+    let cachesDirectory = URL.tak_cachesDirectory()
+    let documentDirectory = URL.tak_documentDirectory()
+    let temporaryDirectory = URL.tak_temporaryDirectory()
     
     print(cachesDirectory)
     print(documentDirectory)
@@ -103,7 +101,7 @@ extension ViewController {
     print(temporaryDirectory.tak_joined("foo", "bar", "fuga.txt"))
   }
   
-  private func doDecimationSample() {
+  fileprivate func doDecimationSample() {
     (1...5).forEach { i in
       decimation.execute {
         print(i)

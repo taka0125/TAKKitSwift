@@ -11,25 +11,25 @@ import Foundation
 
 public final class KeyboardDisplayObserver {
   public enum EventType: String {
-    case WillShow, WillHide
+    case willShow, willHide
   }
   
-  public typealias Callback = (event: EventType, keyboardSize: CGSize) -> ()
+  public typealias Callback = (_ event: EventType, _ keyboardSize: CGSize) -> ()
   
-  private var callback: Callback?
-  private weak var view: UIView?
+  fileprivate var callback: Callback?
+  fileprivate weak var view: UIView?
   
   deinit {
-    NSNotificationCenter.defaultCenter().removeObserver(self)
+    NotificationCenter.default.removeObserver(self)
   }
   
   public init() {
-    let center = NSNotificationCenter.defaultCenter()
-    center.tak_replaceObserver(self, selector: #selector(self.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification)
-    center.tak_replaceObserver(self, selector: #selector(self.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification)
+    let center = NotificationCenter.default
+    center.tak_replaceObserver(self, selector: #selector(keyboardWillShow(_:)), name: Notification.Name.UIKeyboardWillShow)
+    center.tak_replaceObserver(self, selector: #selector(keyboardWillHide(_:)), name: Notification.Name.UIKeyboardWillHide)
   }
   
-  public func observe(view: UIView? = nil, callback: Callback) {
+  public func observe(_ view: UIView? = nil, callback: @escaping Callback) {
     self.view = view
     self.callback = callback
   }
@@ -38,30 +38,30 @@ public final class KeyboardDisplayObserver {
 // MARK: - Private Methods
 
 extension KeyboardDisplayObserver {
-  @objc private func keyboardWillShow(notification: NSNotification) {
-    keyboardWillChangeFrameWithNotification(notification, .WillShow)
+  @objc fileprivate func keyboardWillShow(_ notification: Notification) {
+    keyboardWillChangeFrameWithNotification(notification, .willShow)
   }
   
-  @objc private func keyboardWillHide(notification: NSNotification) {
-    keyboardWillChangeFrameWithNotification(notification, .WillHide)
+  @objc fileprivate func keyboardWillHide(_ notification: Notification) {
+    keyboardWillChangeFrameWithNotification(notification, .willHide)
   }
   
-  private func keyboardWillChangeFrameWithNotification(notification: NSNotification, _ eventType: EventType) {
+  fileprivate func keyboardWillChangeFrameWithNotification(_ notification: Notification, _ eventType: EventType) {
     let userInfo = notification.userInfo!
-    let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue().size
+    let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
     
     view?.layoutIfNeeded()
     
-    callback?(event: eventType, keyboardSize: keyboardSize)
+    callback?(eventType, keyboardSize)
     
     guard let view = view else { return }
     
     view.setNeedsUpdateConstraints()
     
-    let duration = NSTimeInterval(userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber)
+    let duration = TimeInterval(userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber)
     let options = UIViewAnimationOptions(rawValue: UInt(userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber))
     
-    UIView.animateWithDuration(duration, delay: 0.0, options: options,
+    UIView.animate(withDuration: duration, delay: 0.0, options: options,
       animations: { [weak self] () -> Void in
         if let strongSelf = self {
           strongSelf.view?.layoutIfNeeded()
