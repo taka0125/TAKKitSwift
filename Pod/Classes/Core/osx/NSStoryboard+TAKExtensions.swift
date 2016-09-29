@@ -12,10 +12,10 @@ import AppKit
 
 public extension NSStoryboard {
   public func tak_instantiateViewController<T: NSWindowController>(klass: T.Type) -> T? {
-    return instantiateControllerWithIdentifier(T.tak_defaultIdentifier()) as? T
+    return instantiateController(withIdentifier: T.tak_defaultIdentifier()) as? T
   }
 
   public func tak_instantiateViewController<T: NSViewController>(klass: T.Type) -> T? {
-    return instantiateControllerWithIdentifier(T.tak_defaultIdentifier()) as? T
+    return instantiateController(withIdentifier: T.tak_defaultIdentifier()) as? T
   }
 }
