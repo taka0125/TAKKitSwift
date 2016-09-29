@@ -10,14 +10,12 @@ Pod::Spec.new do |s|
   s.requires_arc     = true
 
   s.ios.deployment_target = "8.0"
-  s.osx.deployment_target = "10.10"
 
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3.0' }
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'Pod/Classes/Core/*.swift'
     ss.ios.source_files = 'Pod/Classes/Core/ios/*.swift'
-    ss.osx.source_files = 'Pod/Classes/Core/osx/*.swift'
   end
 
   s.subspec 'UserDefaults' do |ss|
