@@ -22,7 +22,7 @@ final class TAKUserDefaultsViewCell: UITableViewCell {
   func bind(_ key: String, value: Any?) {
     selectionStyle = .none
 
-    guard let value = value as? AnyObject else { return }
+    guard let value = value as AnyObject? else { return }
     
     keyNameLabel?.text = key
     classNameLabel?.text = NSStringFromClass(value.classForCoder)

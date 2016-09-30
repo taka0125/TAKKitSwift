@@ -15,13 +15,7 @@ public struct UserDefaults {
   public init() {
     items = Foundation.UserDefaults.standard.dictionaryRepresentation()
     
-    allKeys = items.keys.sorted { (a, b) -> Bool in
-      if let a0 = a as? String, let b0 = b as? String {
-        return a0 < b0
-      }
-      
-      return false
-    }.map { ($0 as? String) ?? "" }
+    allKeys = items.keys.sorted { $0 < $1 }
   }
   
   public subscript(key: String) -> Any? {
