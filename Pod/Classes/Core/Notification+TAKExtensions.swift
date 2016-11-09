@@ -28,6 +28,6 @@ public extension Notification {
       userInfo = [Const.Key: parameters]
     }
     
-    return Notification(name: name, object: object, userInfo: nil)
+    return Notification(name: name, object: object, userInfo: userInfo)
   }
 }
