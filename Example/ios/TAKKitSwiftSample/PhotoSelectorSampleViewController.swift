@@ -23,10 +23,12 @@ class PhotoSelectorSampleViewController: UITableViewController {
     
     switch indexPath.row {
     case 0:
-      launchPhotoLibrary()
+      launchPhotoLibrary(allowEditing: false)
     case 1:
-      launchFrontCamera()
+      launchPhotoLibrary(allowEditing: true)
     case 2:
+      launchFrontCamera()
+    case 3:
       launchRearCamera()
     default:
       break
@@ -37,8 +39,8 @@ class PhotoSelectorSampleViewController: UITableViewController {
     selector = PhotoSelector()
   }
   
-  fileprivate func launchPhotoLibrary() {
-    selector?.launchPhotoLibrary(false,
+  fileprivate func launchPhotoLibrary(allowEditing: Bool) {
+    selector?.launchPhotoLibrary(allowEditing,
       success: { [weak self] image in
         self?.imageView.image = image
       },
