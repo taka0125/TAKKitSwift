@@ -10,7 +10,7 @@
 import Foundation
 
 public struct TAKBlock {
-  public typealias VoidBlock = (Void) -> Void
+  public typealias VoidBlock = () -> Void
   
   // https://developer.apple.com/library/ios/documentation/Performance/Conceptual/EnergyGuide-iOS/PrioritizeWorkWithQoS.html#//apple_ref/doc/uid/TP40015243-CH39-SW1
   public enum Qos {
