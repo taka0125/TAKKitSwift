@@ -43,7 +43,7 @@ public extension UITableView {
   
   // MARK: - update
   
-  public func tak_update(_ block: (Void) -> Void) {
+  public func tak_update(_ block: () -> Void) {
     beginUpdates()
     block()
     endUpdates()

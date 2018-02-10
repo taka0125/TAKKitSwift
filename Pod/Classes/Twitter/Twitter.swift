@@ -75,7 +75,7 @@ public final class Twitter {
         }
         
         osApi.verifyCredentials(
-          userSuccessBlock: { _ in
+          userSuccessBlock: { _,_  in
             osApi.postReverseAuthAccessToken(withAuthenticationHeader: authenticationHeader,
               successBlock: { (oAuthToken, oAuthTokenSecret, userId, screenName) -> Void in
                 

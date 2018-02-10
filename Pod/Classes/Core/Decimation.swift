@@ -18,7 +18,7 @@ public struct Decimation {
     self.interval = interval
   }
   
-  public mutating func execute(_ block: (Void) -> Void) {
+  public mutating func execute(_ block: () -> Void) {
     var decimated = false
     
     queue.sync {

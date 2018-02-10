@@ -68,7 +68,7 @@ extension PhotoSelector {
   fileprivate func verifyAccessPhotoPermission(_ success: @escaping (Void) -> Void) {
     switch PHPhotoLibrary.authorizationStatus() {
     case .authorized:
-      success()
+      success(())
     case .restricted, .denied:
       failure?(CustomError.photoAccessDenied)
     case .notDetermined:
@@ -85,7 +85,7 @@ extension PhotoSelector {
           return
         }
         
-        success()
+        success(())
       }
     }
   }
@@ -130,8 +130,8 @@ extension PhotoSelector {
     }
   }
   
-  fileprivate func verifyAccessCameraPermission(_ success: @escaping (Void) -> Void) {
-    let status = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+  fileprivate func verifyAccessCameraPermission(_ success: @escaping () -> Void) {
+    let status = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
     switch status {
     case .authorized:
       success()
@@ -142,9 +142,9 @@ extension PhotoSelector {
     }
   }
   
-  fileprivate func requestAccessForCamera(_ success: @escaping (Void) -> Void) {
+  fileprivate func requestAccessForCamera(_ success: @escaping () -> Void) {
     TAKBlock.runOnMainThread {
-      AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo,
+      AVCaptureDevice.requestAccess(for: AVMediaType.video,
         completionHandler: { [weak self] (granted) in
           guard granted else {
             self?.failure?(CustomError.cameraAccessDenied)
