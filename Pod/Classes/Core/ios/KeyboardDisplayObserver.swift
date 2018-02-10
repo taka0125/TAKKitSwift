@@ -47,7 +47,10 @@ extension KeyboardDisplayObserver {
   }
   
   fileprivate func keyboardWillChangeFrameWithNotification(_ notification: Notification, _ eventType: EventType) {
-    let userInfo = notification.userInfo!
+    guard let userInfo = notification.userInfo else { return }
+    guard let duration: TimeInterval = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
+    guard let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? Int else { return }
+
     let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
     
     view?.layoutIfNeeded()
@@ -58,9 +61,7 @@ extension KeyboardDisplayObserver {
     
     view.setNeedsUpdateConstraints()
     
-    let duration = TimeInterval(userInfo[UIKeyboardAnimationDurationUserInfoKey] as! NSNumber)
-    let options = UIViewAnimationOptions(rawValue: UInt(userInfo[UIKeyboardAnimationCurveUserInfoKey] as! NSNumber))
-    
+    let options = UIViewAnimationOptions(rawValue: UInt(animationCurve))
     UIView.animate(withDuration: duration, delay: 0.0, options: options,
       animations: { [weak self] () -> Void in
         if let strongSelf = self {

@@ -47,7 +47,7 @@ class ViewController: UITableViewController, ControllerInstantiatable {
         showUserDefaults()
       case .instantiatable:
         let c = ViewController.makeInstance()
-        print(c)
+        print(c as Any)
       case .application:
         showApplicationInfo()
       case .nsurlSample:

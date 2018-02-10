@@ -65,10 +65,10 @@ public final class PhotoSelector: NSObject {
 // MARK: - Photo
 
 extension PhotoSelector {
-  fileprivate func verifyAccessPhotoPermission(_ success: @escaping (Void) -> Void) {
+  fileprivate func verifyAccessPhotoPermission(_ success: @escaping () -> Void) {
     switch PHPhotoLibrary.authorizationStatus() {
     case .authorized:
-      success(())
+      success()
     case .restricted, .denied:
       failure?(CustomError.photoAccessDenied)
     case .notDetermined:
@@ -76,7 +76,7 @@ extension PhotoSelector {
     }
   }
   
-  fileprivate func requestAccessForPhoto(_ success: @escaping (Void) -> Void) {
+  fileprivate func requestAccessForPhoto(_ success: @escaping () -> Void) {
     TAKBlock.runOnMainThread {
       PHPhotoLibrary.requestAuthorization { [weak self] (status) -> Void in
         guard status == .authorized else {
@@ -85,7 +85,7 @@ extension PhotoSelector {
           return
         }
         
-        success(())
+        success()
       }
     }
   }
