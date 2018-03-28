@@ -11,15 +11,15 @@ import Foundation
 
 extension NSObject: TAKKitCompatible { }
 
-extension TAKKit {
+extension TAKKit where Base: NSObject {
   public class var defaultIdentifier: String {
-    return String(describing: Base.self)
+    return NSStringFromClass(Base.self).components(separatedBy: ".").last!
   }
 }
 
 public extension NSObject {
   @available(*, deprecated, renamed: "tak.defaultIdentifier")
   public class func tak_defaultIdentifier() -> String {
-    return NSStringFromClass(self).components(separatedBy: ".").last!
+    return tak.defaultIdentifier
   }
 }
