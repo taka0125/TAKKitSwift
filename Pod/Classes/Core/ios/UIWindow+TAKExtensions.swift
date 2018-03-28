@@ -10,28 +10,42 @@
 import Foundation
 import UIKit
 
+extension TAKKit where Base: UIWindow {
+  public var topViewController: UIViewController? {
+    return findTopViewController(base.rootViewController)
+  }
+}
+
 public extension UIWindow {
+  @available(*, deprecated, renamed: "tak.topViewController")
   public func tak_topViewController() -> UIViewController? {
-    return tak_findTopViewController(rootViewController)
+    return tak.topViewController
   }
 }
 
 // MARK: - Private Methods
 
-extension UIWindow {
-  fileprivate func tak_findTopViewController(_ controller: UIViewController?) -> UIViewController? {
+extension TAKKit where Base: UIWindow {
+  fileprivate func findTopViewController(_ controller: UIViewController?) -> UIViewController? {
     guard let c = controller else { return nil }
     
     switch c {
     case let c as UITabBarController:
-      return tak_findTopViewController(c.selectedViewController)
+      return findTopViewController(c.selectedViewController)
     case let c as UINavigationController:
-      return tak_findTopViewController(c.visibleViewController)
+      return findTopViewController(c.visibleViewController)
     default:
       if let presentedViewController = c.presentedViewController {
-        return tak_findTopViewController(presentedViewController)
+        return findTopViewController(presentedViewController)
       }
       return c
     }
+  }
+}
+
+extension UIWindow {
+  @available(*, deprecated, renamed: "tak.findTopViewController(controller:)")
+  fileprivate func tak_findTopViewController(_ controller: UIViewController?) -> UIViewController? {
+    return tak.findTopViewController(controller)
   }
 }

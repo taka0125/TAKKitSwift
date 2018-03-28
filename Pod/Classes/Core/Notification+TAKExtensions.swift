@@ -15,7 +15,7 @@ public extension Notification {
   }
 }
 
-extension Notification: TAKKitCompatible { }
+extension Notification: TAKKitCompatible {}
 
 extension TAKKit where Base == Notification {
   public var parameters: Any? {
@@ -34,6 +34,9 @@ extension TAKKit where Base == Notification {
     return Notification(name: name, object: object, userInfo: userInfo)
   }
 }
+
+
+// deprecated //
 
 public extension Notification {
   @available(*, deprecated, renamed: "tak.parameters")

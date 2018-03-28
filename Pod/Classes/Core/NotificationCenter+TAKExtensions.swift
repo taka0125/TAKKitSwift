@@ -9,9 +9,7 @@
 
 import Foundation
 
-extension NotificationCenter: TAKKitCompatible { }
-
-extension TAKKit where Base == NotificationCenter {
+extension TAKKit where Base: NotificationCenter {
   public func replaceObserver(_ notificationObserver: AnyObject, selector: Selector, identifier: String, object: Any? = nil) {
     replaceObserver(notificationObserver, selector: selector, name: Notification.Name(rawValue: identifier), object: object)
   }
@@ -21,6 +19,8 @@ extension TAKKit where Base == NotificationCenter {
     base.addObserver(notificationObserver, selector: selector, name: name, object: object)
   }
 }
+
+// deprecated //
 
 public extension NotificationCenter {
   @available(*, deprecated, renamed: "tak.replaceObserver(notificationObserver:selector:identifier:object:)")
