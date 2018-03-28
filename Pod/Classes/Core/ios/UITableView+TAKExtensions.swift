@@ -14,11 +14,11 @@ extension TAKKit where Base == UITableView {
   
   // MARK: - register
   
-  public func registerClassAndNibForCell(_ klass: UITableViewCell.Type) {
+  public func registerClassAndNibForCell<T: UITableViewCell>(_ klass: T.Type) {
     registerClassAndNibForCell(klass, bundle: Bundle.main)
   }
   
-  public func registerClassAndNibForCell(_ klass: UITableViewCell.Type, bundle: Bundle) {
+  public func registerClassAndNibForCell<T: UITableViewCell>(_ klass: T.Type, bundle: Bundle) {
     base.register(klass, forCellReuseIdentifier: klass.tak.defaultIdentifier)
     base.register(klass.tak.defaultNib(bundle), forCellReuseIdentifier: klass.tak.defaultIdentifier)
   }
@@ -68,12 +68,12 @@ public extension UITableView {
   // MARK: - register
   
   @available(*, deprecated, renamed: "tak.registerClassAndNibForCell(klass:)")
-  public func tak_registerClassAndNibForCell(_ klass: UITableViewCell.Type) {
+  public func tak_registerClassAndNibForCell<T: UITableViewCell>(_ klass: T.Type) {
     tak.registerClassAndNibForCell(klass)
   }
   
   @available(*, deprecated, renamed: "tak.registerClassAndNibForCell(klass:bundle:)")
-  public func tak_registerClassAndNibForCell(_ klass: UITableViewCell.Type, bundle: Bundle) {
+  public func tak_registerClassAndNibForCell<T: UITableViewCell>(_ klass: T.Type, bundle: Bundle) {
     tak.registerClassAndNibForCell(klass, bundle: bundle)
   }
   
