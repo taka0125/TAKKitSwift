@@ -28,3 +28,5 @@ public extension TAKKitCompatible {
   }
   public static var tak: TAKKit<Self>.Type { return TAKKit<Self>.self }
 }
+
+extension NSObject: TAKKitCompatible {}

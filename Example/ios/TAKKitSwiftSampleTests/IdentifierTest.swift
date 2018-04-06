@@ -8,12 +8,11 @@
 
 import UIKit
 import XCTest
-import TAKKitSwift
+@testable import TAKKitSwift
 
 class IdentifierTest: XCTestCase {
   func testClass() {
-    XCTAssertEqual(TAKKitClass.tak.defaultIdentifier, "TAKKitClass")
-    XCTAssertEqual(TAKKitClass.tak.defaultIdentifier, TAKKitClass.tak_defaultIdentifier())
+    XCTAssertEqual(TAKKitClass.tak_defaultIdentifier(), "TAKKitClass")
   }
 }
 

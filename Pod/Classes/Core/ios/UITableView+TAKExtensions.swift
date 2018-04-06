@@ -19,14 +19,14 @@ extension TAKKit where Base == UITableView {
   }
   
   public func registerClassAndNibForCell<T: UITableViewCell>(_ klass: T.Type, bundle: Bundle) {
-    base.register(klass, forCellReuseIdentifier: klass.tak.defaultIdentifier)
-    base.register(klass.tak.defaultNib(bundle), forCellReuseIdentifier: klass.tak.defaultIdentifier)
+    base.register(klass, forCellReuseIdentifier: klass.tak_defaultIdentifier())
+    base.register(klass.tak.defaultNib(bundle), forCellReuseIdentifier: klass.tak_defaultIdentifier())
   }
   
   // MARK: - dequeue
   
   public func dequeueReusableCell<T: UITableViewCell>(_ klass: T.Type) -> T? {
-    return base.dequeueReusableCell(withIdentifier: klass.tak.defaultIdentifier) as? T
+    return base.dequeueReusableCell(withIdentifier: klass.tak_defaultIdentifier()) as? T
   }
   
   public func forceDequeueReusableCell<T: UITableViewCell>(_ klass: T.Type) -> T {
@@ -34,7 +34,7 @@ extension TAKKit where Base == UITableView {
   }
   
   public func dequeueReusableCell<T: UITableViewCell>(_ klass: T.Type, indexPath: IndexPath) -> T? {
-    return base.dequeueReusableCell(withIdentifier: klass.tak.defaultIdentifier, for: indexPath) as? T
+    return base.dequeueReusableCell(withIdentifier: klass.tak_defaultIdentifier(), for: indexPath) as? T
   }
   
   public func forceDequeueReusableCell<T: UITableViewCell>(_ klass: T.Type, indexPath: IndexPath) -> T {

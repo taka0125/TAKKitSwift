@@ -10,26 +10,24 @@
 import Foundation
 import UIKit
 
-extension UICollectionView: TAKKitCompatible {}
-
 extension TAKKit where Base == UICollectionView {
   
   // MARK: - register
   
-  public func registerClassAndNibForCell(_ klass: UICollectionViewCell.Type, bundle: Bundle = Bundle.main) {
-    base.register(klass, forCellWithReuseIdentifier: klass.tak.defaultIdentifier)
-    base.register(klass.tak_defaultNib(bundle), forCellWithReuseIdentifier: klass.tak.defaultIdentifier)
+  public func registerClassAndNibForCell<T: UICollectionViewCell>(_ klass: T.Type, bundle: Bundle = Bundle.main) {
+    base.register(klass, forCellWithReuseIdentifier: klass.tak_defaultIdentifier())
+    base.register(klass.tak.defaultNib(bundle), forCellWithReuseIdentifier: klass.tak_defaultIdentifier())
   }
   
-  public func registerClassAndNibForHeader(_ klass: UICollectionReusableView.Type, bundle: Bundle = Bundle.main) {
-    base.register(klass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak.defaultIdentifier)
-    base.register(klass.tak_defaultNib(bundle), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak.defaultIdentifier)
+  public func registerClassAndNibForHeader<T: UICollectionViewCell>(_ klass: T.Type, bundle: Bundle = Bundle.main) {
+    base.register(klass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
+    base.register(klass.tak.defaultNib(bundle), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
   }
   
   // MARK: - Cell
   
   public func dequeueReusableCell<T: UICollectionViewCell>(_ klass: T.Type, indexPath: IndexPath) -> T? {
-    return base.dequeueReusableCell(withReuseIdentifier: klass.tak.defaultIdentifier, for: indexPath) as? T
+    return base.dequeueReusableCell(withReuseIdentifier: klass.tak_defaultIdentifier(), for: indexPath) as? T
   }
   
   public func forceDequeueReusableCell<T: UICollectionViewCell>(_ klass: T.Type, indexPath: IndexPath) -> T {
@@ -39,7 +37,7 @@ extension TAKKit where Base == UICollectionView {
   // MARK: - Kind
   
   public func dequeueReusableSupplementaryViewOfKind<T: UICollectionReusableView>(_ elementKind: String, klass: T.Type, indexPath: IndexPath) -> T? {
-    return base.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: klass.tak.defaultIdentifier, for: indexPath) as? T
+    return base.dequeueReusableSupplementaryView(ofKind: elementKind, withReuseIdentifier: klass.tak_defaultIdentifier(), for: indexPath) as? T
   }
   
   public func forceDequeueReusableSupplementaryViewOfKind<T: UICollectionReusableView>(_ elementKind: String, klass: T.Type, indexPath: IndexPath) -> T {
@@ -74,12 +72,12 @@ public extension UICollectionView {
   // MARK: - register
 
   @available(*, deprecated, renamed: "tak.registerClassAndNibForCell(klass:bundle:)")
-  public func tak_registerClassAndNibForCell(_ klass: UICollectionViewCell.Type, bundle: Bundle = Bundle.main) {
+  public func tak_registerClassAndNibForCell<T: UICollectionViewCell>(_ klass: T.Type, bundle: Bundle = Bundle.main) {
     tak.registerClassAndNibForCell(klass, bundle: bundle)
   }
   
   @available(*, deprecated, renamed: "tak.registerClassAndNibForHeader(klass:bundle:)")
-  public func tak_registerClassAndNibForHeader(_ klass: UICollectionReusableView.Type, bundle: Bundle = Bundle.main) {
+  public func tak_registerClassAndNibForHeader<T: UICollectionViewCell>(_ klass: T.Type, bundle: Bundle = Bundle.main) {
     tak.registerClassAndNibForHeader(klass, bundle: bundle)
   }
   

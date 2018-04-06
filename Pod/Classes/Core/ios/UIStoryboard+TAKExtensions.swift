@@ -12,7 +12,7 @@ import UIKit
 
 extension TAKKit where Base == UIStoryboard {
   public func instantiateViewController<T: UIViewController>(_ klass: T.Type) -> T? {
-    return base.instantiateViewController(withIdentifier: T.tak.defaultIdentifier) as? T
+    return base.instantiateViewController(withIdentifier: T.tak_defaultIdentifier()) as? T
   }
 }
 

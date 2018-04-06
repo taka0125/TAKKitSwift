@@ -12,7 +12,7 @@ import UIKit
 
 extension TAKKit where Base: UIView {
   public class func defaultNib(_ bundle: Bundle = Bundle.main) -> UINib {
-    return UINib(nibName: defaultIdentifier, bundle: bundle)
+    return UINib(nibName: Base.tak_defaultIdentifier(), bundle: bundle)
   }
   
   public class func viewFromDefaultNib(_ bundle: Bundle = Bundle.main, owner: AnyObject? = nil) -> UIView {
