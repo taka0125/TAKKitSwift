@@ -9,8 +9,8 @@
 
 import Foundation
 
-public extension NSObject {
-  public class func tak_defaultIdentifier() -> String {
+internal extension NSObject {
+  internal class func tak_defaultIdentifier() -> String {
     return NSStringFromClass(self).components(separatedBy: ".").last!
   }
 }

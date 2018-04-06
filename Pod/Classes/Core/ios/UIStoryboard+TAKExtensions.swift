@@ -10,8 +10,15 @@
 import Foundation
 import UIKit
 
+extension TAKKit where Base == UIStoryboard {
+  public func instantiateViewController<T: UIViewController>(_ klass: T.Type) -> T? {
+    return base.instantiateViewController(withIdentifier: T.tak_defaultIdentifier()) as? T
+  }
+}
+
 public extension UIStoryboard {
+  @available(*, deprecated, renamed: "tak.instantiateViewController(klass:)")
   public func tak_instantiateViewController<T: UIViewController>(_ klass: T.Type) -> T? {
-    return instantiateViewController(withIdentifier: T.tak_defaultIdentifier()) as? T
+    return tak.instantiateViewController(klass)
   }
 }

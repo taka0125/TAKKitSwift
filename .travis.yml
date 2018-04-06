@@ -1,5 +1,5 @@
 language: objective-c
-osx_image: xcode8
+osx_image: xcode9.3
 cache: 
   directories:
     - vendor/bundle
@@ -16,3 +16,7 @@ env:
   - XCODE_SDK=iphonesimulator8.4
   - XCODE_SDK=iphonesimulator9.3
   - XCODE_SDK=iphonesimulator10.0
+  - XCODE_SDK=iphonesimulator11.0
+script:
+    - xctool -workspace Example/ios/TAKKitSwiftSample.xcworkspace -scheme TAKKitSwiftSample -sdk iphonesimulator run-tests
+
