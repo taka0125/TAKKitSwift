@@ -94,7 +94,7 @@ extension PhotoSelector {
 // MARK: - Camera
 
 extension PhotoSelector {
-  fileprivate func launchCamera(_ cameraDevice: UIImagePickerControllerCameraDevice, allowsEditing: Bool, success: @escaping SuccessCallback, failure: @escaping FailureCallback = {_ in }) {
+  fileprivate func launchCamera(_ cameraDevice: UIImagePickerController.CameraDevice, allowsEditing: Bool, success: @escaping SuccessCallback, failure: @escaping FailureCallback = {_ in }) {
     self.allowsEditing = allowsEditing
     self.success = success
     self.failure = failure
@@ -162,8 +162,8 @@ extension PhotoSelector {
 
 // privateにできない…
 extension PhotoSelector: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-  public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-    let key = allowsEditing ? UIImagePickerControllerEditedImage : UIImagePickerControllerOriginalImage
+  public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    let key = allowsEditing ? UIImagePickerController.InfoKey.editedImage : UIImagePickerController.InfoKey.originalImage
     let image = info[key] as? UIImage
     
     if let w = UIApplication.shared.delegate?.window, let window = w, let top = window.tak_topViewController() {

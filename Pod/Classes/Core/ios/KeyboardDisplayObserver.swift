@@ -25,8 +25,8 @@ public final class KeyboardDisplayObserver {
   
   public init() {
     let center = NotificationCenter.default
-    center.tak_replaceObserver(self, selector: #selector(keyboardWillShow(_:)), name: Notification.Name.UIKeyboardWillShow)
-    center.tak_replaceObserver(self, selector: #selector(keyboardWillHide(_:)), name: Notification.Name.UIKeyboardWillHide)
+    center.tak_replaceObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification)
+    center.tak_replaceObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification)
   }
   
   public func observe(_ view: UIView? = nil, callback: @escaping Callback) {
@@ -48,10 +48,10 @@ extension KeyboardDisplayObserver {
   
   fileprivate func keyboardWillChangeFrameWithNotification(_ notification: Notification, _ eventType: EventType) {
     guard let userInfo = notification.userInfo else { return }
-    guard let duration: TimeInterval = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double else { return }
-    guard let animationCurve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? Int else { return }
+    guard let duration: TimeInterval = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
+    guard let animationCurve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? Int else { return }
 
-    let keyboardSize = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
+    let keyboardSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
     
     view?.layoutIfNeeded()
     
@@ -61,7 +61,7 @@ extension KeyboardDisplayObserver {
     
     view.setNeedsUpdateConstraints()
     
-    let options = UIViewAnimationOptions(rawValue: UInt(animationCurve))
+    let options = UIView.AnimationOptions(rawValue: UInt(animationCurve))
     UIView.animate(withDuration: duration, delay: 0.0, options: options,
       animations: { [weak self] () -> Void in
         if let strongSelf = self {

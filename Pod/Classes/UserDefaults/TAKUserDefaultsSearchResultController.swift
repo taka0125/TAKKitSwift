@@ -38,7 +38,7 @@ final class TAKUserDefaultsSearchResultController: UITableViewController {
 extension TAKUserDefaultsSearchResultController {
   fileprivate func setupTableView() {
     tableView.estimatedRowHeight = 108.0
-    tableView.rowHeight = UITableViewAutomaticDimension
+    tableView.rowHeight = UITableView.automaticDimension
     
     if let bundle = TAKUserDefaultsBundleHelper.bundle() {
       tableView.tak_registerClassAndNibForCell(TAKUserDefaultsViewCell.self, bundle: bundle)

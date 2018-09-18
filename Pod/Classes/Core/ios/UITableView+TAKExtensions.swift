@@ -51,7 +51,7 @@ public extension UITableView {
   
   // MARK: - reload
   
-  public func tak_reloadSections(_ sections: Set<Int>, animation: UITableViewRowAnimation) {
+  public func tak_reloadSections(_ sections: Set<Int>, animation: UITableView.RowAnimation) {
     tak_update {
       var indexes = IndexSet()
       sections.forEach { section in

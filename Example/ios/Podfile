@@ -4,6 +4,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 install! 'cocoapods', deterministic_uuids: false
 
 use_frameworks!
+swift_version = '4.2'
 
 target 'TAKKitSwiftSample' do
   pod "TAKKitSwift", :path => "../../"

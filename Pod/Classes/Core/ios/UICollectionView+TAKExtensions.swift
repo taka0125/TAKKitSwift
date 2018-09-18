@@ -20,8 +20,8 @@ public extension UICollectionView {
   }
   
   public func tak_registerClassAndNibForHeader(_ klass: UICollectionReusableView.Type, bundle: Bundle = Bundle.main) {
-    register(klass, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
-    register(klass.tak_defaultNib(bundle), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
+    register(klass, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
+    register(klass.tak_defaultNib(bundle), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: klass.tak_defaultIdentifier())
   }
   
   // MARK: - Cell
@@ -47,7 +47,7 @@ public extension UICollectionView {
   // MARK: - SectionHeader
   
   public func tak_dequeueReusableSupplementaryViewOfSectionHeader<T: UICollectionReusableView>(_ klass: T.Type, indexPath: IndexPath) -> T? {
-    return tak_dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionHeader, klass: klass, indexPath: indexPath)
+    return tak_dequeueReusableSupplementaryViewOfKind(UICollectionView.elementKindSectionHeader, klass: klass, indexPath: indexPath)
   }
   
   public func tak_forceDequeueReusableSupplementaryViewOfSectionHeader<T: UICollectionReusableView>(_ klass: T.Type, indexPath: IndexPath) -> T {
@@ -57,7 +57,7 @@ public extension UICollectionView {
   // MARK: - SectionFooter
   
   public func tak_dequeueReusableSupplementaryViewOfSectionFooter<T: UICollectionReusableView>(_ klass: T.Type, indexPath: IndexPath) -> T? {
-    return tak_dequeueReusableSupplementaryViewOfKind(UICollectionElementKindSectionFooter, klass: klass, indexPath: indexPath)
+    return tak_dequeueReusableSupplementaryViewOfKind(UICollectionView.elementKindSectionFooter, klass: klass, indexPath: indexPath)
   }
   
   public func tak_forceDequeueReusableSupplementaryViewOfSectionFooter<T: UICollectionReusableView>(_ klass: T.Type, indexPath: IndexPath) -> T {
